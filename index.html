@@ -23,6 +23,8 @@
             --army-green: #1a2e1a;
             --blood-red: #8a0303;
             --bright-red: #ff0000;
+            --bd-green: #006a4e;
+            --bd-red: #f42a41;
             --gold: #c5a059;
             --black: #050505;
         }
@@ -122,19 +124,158 @@
             opacity: 0.4;
             z-index: 0;
         }
+
+        /* Bangladesh 2.0 Gradient */
+        .bd-gradient-text {
+            background: linear-gradient(90deg, #006a4e 30%, #f42a41 70%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hope-card {
+            background: linear-gradient(145deg, #111, #0a0a0a);
+            border-left: 3px solid #006a4e;
+        }
+
+        /* Secret Files Preloader */
+        .top-secret {
+            background: 
+                linear-gradient(90deg, #000 21px, transparent 1%) center,
+                linear-gradient(#000 21px, transparent 1%) center,
+                #111;
+            background-size: 22px 22px;
+        }
+        .classified-stamp {
+            position: relative;
+            border: 2px solid #8a0303;
+            padding: 10px;
+            text-align: center;
+            color: #8a0303;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        .classified-stamp::before {
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid #8a0303;
+            opacity: 0.5;
+        }
+        .glitch {
+            position: relative;
+            color: #fff;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+        }
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -1px 0 red;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -1px 0 blue;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            5% { clip: rect(12px, 9999px, 59px, 0); }
+            10% { clip: rect(48px, 9999px, 29px, 0); }
+            15% { clip: rect(42px, 9999px, 73px, 0); }
+            20% { clip: rect(63px, 9999px, 27px, 0); }
+            25% { clip: rect(34px, 9999px, 55px, 0); }
+            30% { clip: rect(86px, 9999px, 73px, 0); }
+            35% { clip: rect(20px, 9999px, 20px, 0); }
+            40% { clip: rect(26px, 9999px, 60px, 0); }
+            45% { clip: rect(25px, 9999px, 66px, 0); }
+            50% { clip: rect(57px, 9999px, 98px, 0); }
+            55% { clip: rect(5px, 9999px, 46px, 0); }
+            60% { clip: rect(82px, 9999px, 31px, 0); }
+            65% { clip: rect(54px, 9999px, 27px, 0); }
+            70% { clip: rect(28px, 9999px, 99px, 0); }
+            75% { clip: rect(45px, 9999px, 69px, 0); }
+            80% { clip: rect(23px, 9999px, 85px, 0); }
+            85% { clip: rect(54px, 9999px, 84px, 0); }
+            90% { clip: rect(45px, 9999px, 47px, 0); }
+            95% { clip: rect(37px, 9999px, 20px, 0); }
+            100% { clip: rect(4px, 9999px, 91px, 0); }
+        }
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(52px, 9999px, 74px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            15% { clip: rect(75px, 9999px, 5px, 0); }
+            20% { clip: rect(67px, 9999px, 61px, 0); }
+            25% { clip: rect(14px, 9999px, 79px, 0); }
+            30% { clip: rect(1px, 9999px, 66px, 0); }
+            35% { clip: rect(86px, 9999px, 30px, 0); }
+            40% { clip: rect(23px, 9999px, 98px, 0); }
+            45% { clip: rect(85px, 9999px, 72px, 0); }
+            50% { clip: rect(71px, 9999px, 75px, 0); }
+            55% { clip: rect(2px, 9999px, 48px, 0); }
+            60% { clip: rect(30px, 9999px, 16px, 0); }
+            65% { clip: rect(59px, 9999px, 50px, 0); }
+            70% { clip: rect(41px, 9999px, 62px, 0); }
+            75% { clip: rect(2px, 9999px, 82px, 0); }
+            80% { clip: rect(47px, 9999px, 73px, 0); }
+            85% { clip: rect(3px, 9999px, 27px, 0); }
+            90% { clip: rect(26px, 9999px, 55px, 0); }
+            95% { clip: rect(42px, 9999px, 97px, 0); }
+            100% { clip: rect(38px, 9999px, 49px, 0); }
+        }
     </style>
 </head>
 <body class="bg-black text-gray-300 antialiased selection:bg-red-900 selection:text-white">
 
-    <!-- PRELOADER -->
-    <div id="preloader" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center">
-        <div class="w-full max-w-md px-6">
-            <div class="h-1 w-full bg-gray-900 rounded overflow-hidden">
-                <div class="h-full bg-red-700 w-0" id="progress-bar"></div>
+    <!-- PRELOADER - SECRET FILES THEME -->
+    <div id="preloader" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center top-secret">
+        <div class="w-full max-w-2xl px-6">
+            <!-- Classified Stamp -->
+            <div class="classified-stamp mb-8">
+                <div class="glitch" data-text="TOP SECRET // EYES ONLY">TOP SECRET // EYES ONLY</div>
+                <div class="text-xs mt-2">CLASSIFICATION LEVEL: BLACK</div>
             </div>
-            <div class="flex justify-between mt-2 font-mono text-xs text-red-500">
-                <span>INITIALIZING INTEL...</span>
-                <span id="progress-text">0%</span>
+            
+            <!-- Progress Area -->
+            <div class="mb-6">
+                <div class="flex justify-between mb-2 font-mono text-xs text-red-500">
+                    <span>DECRYPTING CLASSIFIED FILES...</span>
+                    <span id="progress-text">0%</span>
+                </div>
+                <div class="h-2 w-full bg-gray-900 rounded overflow-hidden border border-gray-800">
+                    <div class="h-full bg-gradient-to-r from-red-700 to-red-900 w-0" id="progress-bar"></div>
+                </div>
+            </div>
+            
+            <!-- Status Messages -->
+            <div class="font-mono text-xs text-gray-500 space-y-1">
+                <div id="status-line-1">> INITIALIZING SECURITY PROTOCOLS...</div>
+                <div id="status-line-2" class="hidden">> ACCESSING RESTRICTED DATABASE...</div>
+                <div id="status-line-3" class="hidden">> DECRYPTING EVIDENCE FILES...</div>
+                <div id="status-line-4" class="hidden">> BYPASSING GOVERNMENT FIREWALLS...</div>
+                <div id="status-line-5" class="hidden">> LOADING CLASSIFIED CONTENT...</div>
+            </div>
+            
+            <!-- Warning -->
+            <div class="mt-8 text-center">
+                <div class="text-[10px] text-red-600 uppercase tracking-widest border border-red-600 px-2 py-1 inline-block">
+                    UNAUTHORIZED ACCESS IS PUNISHABLE BY LAW
+                </div>
             </div>
         </div>
     </div>
@@ -145,9 +286,9 @@
             <div class="font-cinzel font-bold text-red-600 text-lg tracking-widest">THE RED CHAPTER</div>
             <div class="hidden md:flex space-x-6 text-xs uppercase tracking-widest text-gray-400">
                 <a href="#motive" class="hover:text-white transition">The Motive</a>
-                <a href="#blueprint" class="hover:text-white transition">The Blueprint</a>
                 <a href="#nexus" class="hover:text-white transition">The Nexus</a>
                 <a href="#timeline" class="hover:text-white transition">Timeline</a>
+                <a href="#revolution" class="hover:text-white transition text-red-500 font-bold">The Revolution</a>
             </div>
             <div class="md:hidden text-red-600"><i data-lucide="menu"></i></div>
         </div>
@@ -254,7 +395,7 @@
         </div>
     </section>
 
-    <!-- NEW SECTION: THE BLUEPRINT (CONCEPT MIND MAP) -->
+    <!-- SECTION: THE BLUEPRINT -->
     <section id="blueprint" class="py-24 bg-[#050505] relative border-b border-gray-900 overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-black to-black opacity-50"></div>
         <div class="container mx-auto px-6 max-w-7xl relative z-10">
@@ -524,25 +665,132 @@
         </div>
     </section>
 
-    <!-- SECTION 6: COUNTERARGUMENTS -->
-    <section class="py-16 bg-[#0f0f0f] border-t border-gray-900">
+    <!-- SECTION 6: BRIEF SUMMARY TREE -->
+    <section id="archive-tree" class="py-24 bg-[#0a0a0a] border-t border-gray-900 relative">
         <div class="container mx-auto px-6 max-w-4xl">
-            <h3 class="text-gray-500 uppercase tracking-widest text-xs mb-6 font-bold">Counter-Intelligence</h3>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div>
-                    <h4 class="text-white font-oswald mb-2 flex items-center gap-2"><i data-lucide="shield-question" class="w-4 h-4 text-gray-500"></i> Official Denials</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">India maintains role was supportive. BSF messages dismissed as routine.</p>
-                </div>
-                <div>
-                    <h4 class="text-white font-oswald mb-2 flex items-center gap-2"><i data-lucide="file-warning" class="w-4 h-4 text-gray-500"></i> Lack of Hard Forensics</h4>
-                    <p class="text-xs text-gray-400 leading-relaxed">Skeptics argue no declassified documents explicitly name RAW, blaming internal failures.</p>
+            <div class="text-center mb-12">
+                 <i data-lucide="folder-open" class="w-12 h-12 text-red-600 mx-auto mb-4"></i>
+                 <h2 class="text-3xl font-cinzel text-white">CLASSIFIED ARCHIVES: FULL CONTEXT</h2>
+                 <p class="text-xs text-gray-500 mt-2 font-mono">CLICK NODES TO EXPAND DATABASE</p>
+            </div>
+
+            <div class="space-y-4 font-mono text-sm">
+                <!-- Root Node -->
+                <div class="border border-gray-800 bg-black/50 p-4 rounded">
+                    <details class="group">
+                        <summary class="flex items-center gap-3 cursor-pointer list-none text-red-500 font-bold text-lg">
+                            <i data-lucide="chevron-right" class="w-5 h-5 transition-transform group-open:rotate-90"></i>
+                            THE GREAT CONSPIRACY (ROOT)
+                        </summary>
+                        <div class="pl-8 pt-4 space-y-4 border-l border-red-900/30 ml-2 mt-2">
+                            
+                            <!-- Branch 1 -->
+                            <details class="group">
+                                <summary class="flex items-center gap-2 cursor-pointer list-none text-gray-300 hover:text-white">
+                                    <i data-lucide="minus" class="w-4 h-4 text-gray-600"></i>
+                                    PHASE 1: THE MOTIVE (1999-2008)
+                                </summary>
+                                <div class="pl-8 pt-2 text-gray-500 space-y-2">
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Border Clashes:</span> Humiliating defeats for BSF at Boraibari & Padua triggered a vendetta.</p>
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">The Strategy:</span> "Decapitation" of BD Army to install a puppet regime.</p>
+                                </div>
+                            </details>
+
+                            <!-- Branch 2 -->
+                            <details class="group">
+                                <summary class="flex items-center gap-2 cursor-pointer list-none text-gray-300 hover:text-white">
+                                    <i data-lucide="minus" class="w-4 h-4 text-gray-600"></i>
+                                    PHASE 2: THE SETUP (PRE-FEB 2009)
+                                </summary>
+                                <div class="pl-8 pt-2 text-gray-500 space-y-2">
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">The Pact:</span> AL leaders (Taposh/Nanak) radicalize soldiers at mosque meetings.</p>
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">False Flag:</span> BSF radio messages trap soldiers into believing Army is attacking.</p>
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Infiltration:</span> 50-100 RAW agents enter Dhaka as traders with kill lists.</p>
+                                </div>
+                            </details>
+                            
+                            <!-- Branch 3 -->
+                            <details class="group">
+                                <summary class="flex items-center gap-2 cursor-pointer list-none text-gray-300 hover:text-white">
+                                    <i data-lucide="minus" class="w-4 h-4 text-gray-600"></i>
+                                    PHASE 3: THE BETRAYAL (FEB 25-26)
+                                </summary>
+                                <div class="pl-8 pt-2 text-gray-500 space-y-2">
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">09:00 AM:</span> Darbar Hall stormed. DG Shakil targeted first.</p>
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">10:30 AM (Critical):</span> Hasina orders Army to stand down, preventing rescue.</p>
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">The Deception:</span> White Flag team enters to negotiate killer's escape, not rescue.</p>
+                                </div>
+                            </details>
+
+                            <!-- Branch 4 -->
+                            <details class="group">
+                                <summary class="flex items-center gap-2 cursor-pointer list-none text-gray-300 hover:text-white">
+                                    <i data-lucide="minus" class="w-4 h-4 text-gray-600"></i>
+                                    PHASE 4: THE FALLOUT
+                                </summary>
+                                <div class="pl-8 pt-2 text-gray-500 space-y-2">
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Sovereignty Lost:</span> 57 Officers dead. Army morale broken.</p>
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Cover-Up:</span> Witness silencing (Pesh Imam) & narrative control.</p>
+                                </div>
+                            </details>
+
+                        </div>
+                    </details>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- NEW SECTION: REBIRTH (JULY REVOLUTION) -->
+    <section id="revolution" class="py-24 bg-gradient-to-t from-gray-900 to-black relative border-t border-gray-800">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-16">
+                <span class="inline-block px-3 py-1 border border-green-800 bg-green-900/10 text-green-500 font-mono text-xs tracking-[0.2em] mb-4">THE AWAKENING</span>
+                <h2 class="text-5xl md:text-6xl font-cinzel text-white">REBIRTH: THE JULY REVOLUTION</h2>
+                <p class="text-gray-400 mt-4 max-w-2xl mx-auto">How the student-led uprising of 2024 dismantled the fascist regime and reopened the path to justice for Pilkhana.</p>
+            </div>
+
+            <!-- Removed Map Area, centered content -->
+            <div class="max-w-4xl mx-auto space-y-6">
+                
+                <!-- Card 1 -->
+                <div class="hope-card p-6 rounded-r-lg">
+                    <h3 class="text-xl font-oswald text-white mb-2 flex items-center gap-2">
+                        <i data-lucide="scale" class="text-green-500 w-5 h-5"></i> 2025 COMMISSION FORMED
+                    </h3>
+                    <p class="text-sm text-gray-400">The interim government established the National Independent Commission to reinvestigate Pilkhana, freeing the narrative from 16 years of AL censorship.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="hope-card p-6 rounded-r-lg border-l-3 border-red-600" style="border-left-color: #f42a41;">
+                    <h3 class="text-xl font-oswald text-white mb-2 flex items-center gap-2">
+                        <i data-lucide="mic" class="text-red-500 w-5 h-5"></i> VOICES UNCHAINED
+                    </h3>
+                    <p class="text-sm text-gray-400">Families of the 57 officers, silenced by threat of death/disappearance, are finally testifying against Hasina, Taposh, and their foreign handlers.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="hope-card p-6 rounded-r-lg border-l-3 border-gold" style="border-left-color: var(--gold);">
+                    <h3 class="text-xl font-oswald text-white mb-2 flex items-center gap-2">
+                        <i data-lucide="sunrise" class="text-yellow-500 w-5 h-5"></i> FROM "MUTINY" TO "MASSACRE"
+                    </h3>
+                    <p class="text-sm text-gray-400">The revolution corrected history. It is no longer viewed as a soldier's grievance, but a state-sponsored slaughter of patriots.</p>
+                </div>
+            </div>
+
+            <!-- FINAL PUNCHLINE -->
+            <div class="mt-24 text-center">
+                <h1 class="text-6xl md:text-8xl font-black font-cinzel bd-gradient-text tracking-tighter mb-6">BANGLADESH 2.0</h1>
+                <div class="w-24 h-1 bg-gradient-to-r from-green-600 to-red-600 mx-auto mb-8"></div>
+                <p class="text-xl md:text-2xl font-playfair italic text-white max-w-3xl mx-auto leading-relaxed">
+                    "The sun rises on a land washed in blood, but standing tall in truth. <br>The spirits of the 57 now guard the sovereignty of a free nation."
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
-    <footer class="bg-black py-12 border-t border-red-900/30 text-center relative overflow-hidden">
+    <footer class="bg-black py-12 border-t border-gray-900 text-center relative overflow-hidden">
         <div class="relative z-10">
             <h3 class="font-cinzel text-2xl text-white mb-2">JUSTICE FOR THE 57</h3>
             <p class="text-xs text-red-600 tracking-[0.3em] uppercase mb-8">November 2025 • Dhaka</p>
@@ -551,32 +799,60 @@
                 <i data-lucide="scale" class="w-5 h-5 hover:text-red-600 transition"></i>
             </div>
         </div>
-        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-black via-red-900 to-black"></div>
+        <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-green-800 via-red-600 to-green-800"></div>
     </footer>
 
     <!-- SCRIPTS -->
     <script>
-        // Progress Bar Simulation
+        // Enhanced Secret Files Preloader
         let progress = 0;
         const bar = document.getElementById('progress-bar');
         const text = document.getElementById('progress-text');
         const preloader = document.getElementById('preloader');
+        const statusLines = [
+            document.getElementById('status-line-1'),
+            document.getElementById('status-line-2'),
+            document.getElementById('status-line-3'),
+            document.getElementById('status-line-4'),
+            document.getElementById('status-line-5')
+        ];
+
+        let currentStatus = 0;
 
         const interval = setInterval(() => {
-            progress += Math.floor(Math.random() * 10) + 5;
+            progress += Math.floor(Math.random() * 8) + 3;
             if(progress > 100) progress = 100;
             bar.style.width = `${progress}%`;
             text.innerText = `${progress}%`;
             
+            // Update status lines
+            if (progress >= 20 && currentStatus === 0) {
+                statusLines[0].classList.remove('hidden');
+                currentStatus = 1;
+            } else if (progress >= 40 && currentStatus === 1) {
+                statusLines[1].classList.remove('hidden');
+                currentStatus = 2;
+            } else if (progress >= 60 && currentStatus === 2) {
+                statusLines[2].classList.remove('hidden');
+                currentStatus = 3;
+            } else if (progress >= 80 && currentStatus === 3) {
+                statusLines[3].classList.remove('hidden');
+                currentStatus = 4;
+            } else if (progress >= 95 && currentStatus === 4) {
+                statusLines[4].classList.remove('hidden');
+                currentStatus = 5;
+            }
+            
             if(progress === 100) {
                 clearInterval(interval);
-                gsap.to(preloader, {
-                    opacity: 0,
-                    duration: 0.8,
-                    delay: 0.5,
-                    onComplete: () => preloader.style.display = 'none'
-                });
-                initAnimations();
+                setTimeout(() => {
+                    gsap.to(preloader, {
+                        opacity: 0,
+                        duration: 0.8,
+                        onComplete: () => preloader.style.display = 'none'
+                    });
+                    initAnimations();
+                }, 800);
             }
         }, 150);
 
@@ -589,6 +865,14 @@
                 gsap.from(card, {
                     y: 50, opacity: 0, duration: 0.8, delay: i * 0.1,
                     scrollTrigger: { trigger: card, start: "top 90%" }
+                });
+            });
+
+            // Animate Hope Cards
+            gsap.utils.toArray('.hope-card').forEach((card, i) => {
+                gsap.from(card, {
+                    x: 50, opacity: 0, duration: 0.8, delay: i * 0.2,
+                    scrollTrigger: { trigger: card, start: "top 85%" }
                 });
             });
         }
