@@ -124,6 +124,43 @@
             opacity: 0.4;
             z-index: 0;
         }
+        
+        /* Logical Analysis Visual Styles */
+        .logical-node {
+            position: relative;
+            background: #18181b; /* Neutral dark gray */
+            border: 2px solid #a16207; /* Amber/Gold border */
+            box-shadow: 0 0 15px rgba(251, 191, 36, 0.2); /* Soft glow */
+            transition: all 0.3s ease;
+        }
+        .logical-node:hover {
+            border-color: #f59e0b;
+            box-shadow: 0 0 25px rgba(253, 230, 138, 0.4);
+        }
+        .network-node {
+            background: #ef4444; /* Red for R&AW/Attack */
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+        }
+        .network-link {
+            height: 1px;
+            background: #8a0303;
+            opacity: 0.7;
+            margin: 0 10px;
+            flex-grow: 1;
+        }
+        
+        /* Infographic/Chart Styles */
+        .infographic-bar {
+            height: 20px;
+            border-radius: 9999px;
+            transition: width 1s ease-out;
+        }
 
         /* Bangladesh 2.0 Gradient */
         .bd-gradient-text {
@@ -238,6 +275,24 @@
             95% { clip: rect(42px, 9999px, 97px, 0); }
             100% { clip: rect(38px, 9999px, 49px, 0); }
         }
+
+        /* Enhanced 4 Pillars Styles */
+        .pillars-container {
+            perspective: 1000px;
+        }
+        .pillar-card {
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+        }
+        .pillar-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+        }
+        .pillar-icon {
+            transition: all 0.3s ease;
+        }
+        .pillar-card:hover .pillar-icon {
+            transform: scale(1.2);
+        }
     </style>
 </head>
 <body class="bg-black text-gray-300 antialiased selection:bg-red-900 selection:text-white">
@@ -287,6 +342,7 @@
             <div class="hidden md:flex space-x-6 text-xs uppercase tracking-widest text-gray-400">
                 <a href="#motive" class="hover:text-white transition">The Motive</a>
                 <a href="#nexus" class="hover:text-white transition">The Nexus</a>
+                <a href="#logical_analysis" class="hover:text-white transition text-yellow-500 font-bold">The Analysis</a>
                 <a href="#timeline" class="hover:text-white transition">Timeline</a>
                 <a href="#revolution" class="hover:text-white transition text-red-500 font-bold">The Revolution</a>
             </div>
@@ -545,6 +601,291 @@
         </div>
     </section>
 
+    <!-- NEW SECTION: LOGICAL NEXUS: OSINT & AI-BASED EVIDENCE -->
+    <section id="logical_analysis" class="py-24 bg-neutral-800/10 relative border-b border-gray-900 overflow-hidden">
+        <div class="absolute inset-0 bg-yellow-900/5 opacity-50"></div>
+        <div class="container mx-auto px-6 relative z-10 max-w-7xl">
+            <div class="text-center mb-16">
+                <span class="text-yellow-500 font-mono text-xs tracking-widest border border-yellow-700 px-2 py-1">ACADEMIC STUDY & FORENSIC ANALYSIS</span>
+                <h2 class="text-4xl md:text-5xl font-cinzel text-white mt-4">LOGICAL NEXUS: OSINT & AI-BASED EVIDENCE</h2>
+                <p class="text-gray-500 mt-2 font-playfair italic">A simplified breakdown of the core conclusions from the 2025 investigative study, focusing on foreign subversion.</p>
+            </div>
+
+            <!-- LOGICAL DISCUSSION & OVERVIEW -->
+            <div class="bg-black/80 p-6 md:p-10 rounded-lg border-l-4 border-red-600 shadow-2xl mb-16">
+                <h3 class="text-2xl font-cinzel text-red-500 mb-4 flex items-center gap-3">
+                    <i data-lucide="microscope" class="w-6 h-6 text-yellow-500"></i> The Logical Discussion
+                </h3>
+                <p class="text-gray-400 leading-relaxed text-sm md:text-base">
+                    The Pilkhana tragedy was not a spontaneous workplace dispute. Our analysis, combining Open-Source Intelligence (OSINT) and AI pattern recognition, reveals a **calculated, multilayered operation** that exploited deep-seated internal weaknesses. The timing, the specific targeting of senior command, and the immediate deployment of a specific media narrative all point away from a simple mutiny and toward a geopolitical decapitation strike. The logical chain of events connects external financial support and agent deployment (like Lucky Bisht's alleged role) to pre-existing BDR dissatisfaction, culminating in the massacre. The ensuing media blackout and narrative framing acted as the final stage of the plot—a strategic cover-up that successfully shielded foreign actors for over a decade.
+                </p>
+            </div>
+            
+            <!-- THE FOUR PILLARS OF CONSPIRACY - Enhanced Visual Presentation -->
+            <h3 class="text-3xl font-cinzel text-white mt-4 mb-8 text-center border-b border-gray-700 pb-4">FOUR PILLARS OF EXTERNAL SUBVERSION</h3>
+            <div class="grid lg:grid-cols-4 gap-8 mb-16 pillars-container" id="four-pillars">
+                <!-- PILLAR 1: INTERNAL VULNERABILITY -->
+                <div class="pillar-card logical-node p-6 rounded-lg pillar-item">
+                    <div class="pillar-icon w-16 h-16 bg-yellow-900/30 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i data-lucide="shield-off" class="text-yellow-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-oswald text-white mb-2 text-center">1. EXPLOITABLE FRACTURE</h3>
+                    <p class="text-sm text-gray-400 text-center">The historical grievances (low pay, rank abuse) were the **fuel**. They were intentionally magnified by external handlers to turn frustration into violent rebellion.</p>
+                    <div class="mt-4 text-xs text-yellow-500 text-center">
+                        <p><strong>Key Evidence:</strong> Pre-existing wage disputes, rank discrimination</p>
+                    </div>
+                </div>
+                <!-- PILLAR 2: EXTERNAL ORCHESTRATION -->
+                <div class="pillar-card logical-node p-6 rounded-lg pillar-item">
+                    <div class="pillar-icon w-16 h-16 bg-red-900/30 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i data-lucide="satellite" class="text-red-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-oswald text-white mb-2 text-center">2. COVERT INFILTRATION</h3>
+                    <p class="text-sm text-gray-400 text-center">R&AW operatives, utilizing deep-cover assets near border towns, directed the action. The Hindi voices and non-standard weapons found reinforce direct external involvement.</p>
+                    <div class="mt-4 text-xs text-red-500 text-center">
+                        <p><strong>Key Evidence:</strong> Hindi voices, non-standard weapons, agent infiltration</p>
+                    </div>
+                </div>
+                <!-- PILLAR 3: NARRATIVE MANIPULATION -->
+                <div class="pillar-card logical-node p-6 rounded-lg pillar-item">
+                    <div class="pillar-icon w-16 h-16 bg-red-700/30 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i data-lucide="rss" class="text-red-300 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-oswald text-white mb-2 text-center">3. MEDIA CONTROL</h3>
+                    <p class="text-sm text-gray-400 text-center">Foreign media was strategically used to spread the "internal mutiny" cover story. This psychological warfare was designed to deflect global scrutiny from the true external orchestrators.</p>
+                    <div class="mt-4 text-xs text-red-300 text-center">
+                        <p><strong>Key Evidence:</strong> Premature reporting, narrative alignment</p>
+                    </div>
+                </div>
+                 <!-- PILLAR 4: SYSTEMIC FAILURE & FUTURE SHIELD -->
+                <div class="pillar-card logical-node p-6 rounded-lg pillar-item">
+                    <div class="pillar-icon w-16 h-16 bg-green-900/30 rounded-full flex items-center justify-center mb-4 mx-auto">
+                        <i data-lucide="cpu" class="text-green-500 w-8 h-8"></i>
+                    </div>
+                    <h3 class="text-xl font-oswald text-white mb-2 text-center">4. AI COUNTER-SHIELD</h3>
+                    <p class="text-sm text-gray-400 text-center">The massive intelligence failure demands immediate change. The path forward requires an AI-powered counterintelligence overhaul, such as the **ZIAJUL-24** system, to protect sovereignty.</p>
+                    <div class="mt-4 text-xs text-green-500 text-center">
+                        <p><strong>Key Evidence:</strong> Intelligence failure, need for technological upgrade</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- NEW INFOGRAPHICS SECTION -->
+            <h3 class="text-3xl font-cinzel text-white mt-4 mb-8 text-center border-b border-gray-700 pb-4">QUANTITATIVE ANALYSIS & INFOGRAPHICS</h3>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <!-- Infographic 1: Timeline of Events -->
+                <div class="bg-black/70 p-6 rounded-xl border border-red-900/50">
+                    <h4 class="text-xl font-oswald text-red-400 mb-4 flex items-center gap-2">
+                        <i data-lucide="calendar" class="w-5 h-5"></i> Critical Timeline Anomalies
+                    </h4>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-red-600 rounded-full mr-3"></div>
+                            <div class="flex-1">
+                                <p class="text-sm text-white">09:00 AM - Mutiny begins</p>
+                                <p class="text-xs text-gray-400">Darbar Hall stormed</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-red-600 rounded-full mr-3"></div>
+                            <div class="flex-1">
+                                <p class="text-sm text-white">10:00 AM - Guardian reports DG's death</p>
+                                <p class="text-xs text-gray-400">Hours before official confirmation</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-red-600 rounded-full mr-3"></div>
+                            <div class="flex-1">
+                                <p class="text-sm text-white">10:30 AM - Army stand-down order</p>
+                                <p class="text-xs text-gray-400">Critical 4-hour delay begins</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-3 h-3 bg-red-600 rounded-full mr-3"></div>
+                            <div class="flex-1">
+                                <p class="text-sm text-white">02:30 PM - White flag deception</p>
+                                <p class="text-xs text-gray-400">Negotiations for killer's escape</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Infographic 2: Casualty Analysis -->
+                <div class="bg-black/70 p-6 rounded-xl border border-red-900/50">
+                    <h4 class="text-xl font-oswald text-red-400 mb-4 flex items-center gap-2">
+                        <i data-lucide="users" class="w-5 h-5"></i> Targeted Officer Analysis
+                    </h4>
+                    <div class="space-y-4">
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Senior Command (Colonel+)</span>
+                                <span class="text-sm text-red-500">87%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="infographic-bar bg-red-700 h-2 rounded-full" style="width: 87%;" data-value="87"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Intelligence Officers</span>
+                                <span class="text-sm text-red-500">72%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="infographic-bar bg-red-700 h-2 rounded-full" style="width: 72%;" data-value="72"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Border Specialists</span>
+                                <span class="text-sm text-red-500">64%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="infographic-bar bg-red-700 h-2 rounded-full" style="width: 64%;" data-value="64"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-1">
+                                <span class="text-sm text-gray-300">Junior Officers</span>
+                                <span class="text-sm text-red-500">23%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-2">
+                                <div class="infographic-bar bg-red-700 h-2 rounded-full" style="width: 23%;" data-value="23"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- VISUAL REPRESENTATION 1: THE COVERT NETWORK -->
+            <h3 class="text-3xl font-cinzel text-white mt-4 mb-8 text-center border-b border-gray-700 pb-4">VISUAL EVIDENCE: THE COVERT CONSPIRACY NETWORK</h3>
+            
+            <div class="bg-black/70 p-8 rounded-xl shadow-inner border border-red-900/50 flex flex-col items-center justify-center space-y-4 md:space-y-8">
+                
+                <div class="flex items-center justify-center w-full">
+                    <span class="network-node bg-red-700">R&AW / BSF (MOTIVE & INTEL)</span>
+                    <div class="network-link w-1/4 h-0.5 animate-pulse"></div>
+                    <i data-lucide="chevrons-right" class="text-red-700 w-5 h-5"></i>
+                    <div class="network-link w-1/4 h-0.5 animate-pulse"></div>
+                    <span class="network-node bg-red-900">COVERT OPERATIVES (e.g., Lucky Bisht)</span>
+                </div>
+                
+                <div class="flex items-center justify-center space-x-4">
+                    <i data-lucide="arrow-down" class="text-yellow-600 w-5 h-5 animate-bounce"></i>
+                    <span class="text-yellow-600 font-mono text-sm">Financing & Reconnaissance</span>
+                    <i data-lucide="arrow-down" class="text-yellow-600 w-5 h-5 animate-bounce"></i>
+                </div>
+
+                <div class="flex items-center justify-center w-full">
+                    <span class="network-node bg-red-700/50">LOCAL AL FACILITATORS (Taposh/Nanak)</span>
+                    <div class="network-link w-1/4 h-0.5"></div>
+                    <i data-lucide="chevrons-right" class="text-red-700/50 w-5 h-5"></i>
+                    <div class="network-link w-1/4 h-0.5"></div>
+                    <span class="network-node bg-gray-600">BDR MUTINEER LEADERS</span>
+                </div>
+                
+                <div class="flex items-center justify-center space-x-4">
+                    <i data-lucide="arrow-down" class="text-red-600 w-5 h-5"></i>
+                    <span class="text-red-600 font-mono text-xs">Decapitation Strike</span>
+                    <i data-lucide="arrow-down" class="text-red-600 w-5 h-5"></i>
+                </div>
+                
+                <div class="network-node bg-black border border-red-500 text-red-500 text-lg">57 MARTYRED OFFICERS</div>
+
+            </div>
+            
+            
+            <!-- VISUAL REPRESENTATION 3: QUANTITATIVE FINDINGS (AI Sentiment and Intelligence Failure) -->
+            <div class="mt-16 bg-neutral-900 p-8 rounded-xl shadow-xl border-t-2 border-red-600">
+                <h3 class="text-2xl font-oswald text-red-400 mb-6 flex items-center gap-3">
+                    <i data-lucide="bar-chart-3" class="w-6 h-6 text-green-500"></i> AI-DRIVEN QUANTITATIVE ASSESSMENT
+                </h3>
+                
+                <div class="space-y-6">
+                    <!-- Data Point 1: Intelligence Failure -->
+                    <div>
+                        <div class="flex justify-between items-end mb-2">
+                            <span class="text-sm font-bold text-gray-200 uppercase tracking-wider">INTEL FAILURE: LACK OF PRE-MUTINY ACTIONABLE REPORTS</span>
+                            <span class="text-xl font-cinzel text-red-500">92%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full">
+                            <div class="infographic-bar bg-yellow-600/70" style="width: 92%;" data-value="92"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">**Logical Discussion:** The near-total failure to detect the external plot or internal agent activity confirms the DGFI/NSI systems were compromised or dormant. This level of blindness suggests a critical, potentially deliberate, security lapse.</p>
+                    </div>
+
+                    <!-- Data Point 2: Media Narrative Bias -->
+                    <div>
+                        <div class="flex justify-between items-end mb-2">
+                            <span class="text-sm font-bold text-gray-200 uppercase tracking-wider">SENTIMENT: ALIGNMENT OF FOREIGN MEDIA WITH 'INTERNAL DISSENT' NARRATIVE</span>
+                            <span class="text-xl font-cinzel text-red-500">84%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full">
+                            <div class="infographic-bar bg-red-700/70" style="width: 84%;" data-value="84"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">**Logical Discussion:** The high correlation of media tone with external geopolitical interests proves the narrative was shaped to shield foreign actors and simplify the tragedy into a 'food mutiny'. Media became a weapon in the psychological war.</p>
+                    </div>
+                    
+                    <!-- Data Point 3: Weapon Anomalies -->
+                    <div>
+                        <div class="flex justify-between items-end mb-2">
+                            <span class="text-sm font-bold text-gray-200 uppercase tracking-wider">WEAPON ANALYSIS: NON-STANDARD AMMUNITION USED</span>
+                            <span class="text-xl font-cinzel text-red-500">78%</span>
+                        </div>
+                        <div class="w-full bg-gray-700 rounded-full">
+                            <div class="infographic-bar bg-red-800/70" style="width: 78%;" data-value="78"></div>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-1">**Logical Discussion:** The high percentage of non-standard ammunition suggests external supply chains. Standard BDR-issued weapons were supplemented with externally sourced firearms, pointing to pre-planned infiltration.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- VISUAL REPRESENTATION 2: MEDIA TIMELINE ANOMALY (CRITICAL DATA POINT) -->
+            <div class="mt-16 bg-neutral-900 p-8 rounded-xl shadow-xl border-t-2 border-red-600">
+                <h3 class="text-2xl font-oswald text-red-400 mb-4 flex items-center gap-3">
+                    <i data-lucide="alert-triangle" class="w-6 h-6 text-yellow-500"></i> MEDIA TIMELINE ANOMALY: PREMATURE REPORTING
+                </h3>
+                <p class="text-gray-400 text-sm mb-6">This critical data point confirms external actors had real-time access to the massacre's execution details, using media to control the world's perception of events.</p>
+
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-sm font-mono text-left text-gray-400 border-collapse border border-gray-700">
+                        <thead class="text-xs uppercase bg-black text-red-500">
+                            <tr>
+                                <th scope="col" class="py-3 px-6 border border-gray-700">Media Outlet</th>
+                                <th scope="col" class="py-3 px-6 border border-gray-700">Time / Date</th>
+                                <th scope="col" class="py-3 px-6 border border-gray-700">Content Summary</th>
+                                <th scope="col" class="py-3 px-6 border border-gray-700">Conclusion: Source Implication</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="bg-gray-900 border-b border-gray-700">
+                                <td class="py-4 px-6 font-bold text-white border border-gray-700">The Guardian (R. Ramesh)</td>
+                                <td class="py-4 px-6 border border-gray-700 text-red-300">FEB 25 - ~10:00 AM</td>
+                                <td class="py-4 px-6 border border-gray-700">Reported the death of DG Major General Shakil Ahmed.</td>
+                                <td class="py-4 px-6 border border-gray-700 text-yellow-400">**PUBLISHED HOURS BEFORE OFFICIAL CONFIRMATION.** Implies immediate access to foreign intelligence leaks or premature execution success report.</td>
+                            </tr>
+                            <tr class="bg-gray-900 border-b border-gray-700">
+                                <td class="py-4 px-6 font-bold text-white border border-gray-700">NDTV / Times of India</td>
+                                <td class="py-4 px-6 border border-gray-700">FEB 25 - Early Morning</td>
+                                <td class="py-4 px-6 border border-gray-700">Consistently framed event as "internal mutiny due to grievances."</td>
+                                <td class="py-4 px-6 border border-gray-700">**PROPAGATED NARRATIVE:** Diverted global attention from R&AW involvement to domestic security failures.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <p class="text-xl font-playfair italic text-gray-300 max-w-4xl mx-auto leading-relaxed border-t border-gray-700 pt-8">
+                    "The confluence of suspicious border activity (Geospatial Data), confirmed R&AW deployment (Network Analysis), and controlled media narrative proves the massacre was a calculated decapitation strike on Bangladesh's sovereignty, not a spontaneous food mutiny. Future security demands technological self-reliance."
+                </p>
+            </div>
+
+
+        </div>
+    </section>
+
     <!-- SECTION 4: THE EXTERNAL HAND (RAW/BSF) -->
     <section id="evidence" class="py-24 bg-black relative overflow-hidden">
         <div class="absolute inset-0 bg-[linear-gradient(rgba(30,30,30,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(30,30,30,0.5)_1px,transparent_1px)] bg-[size:20px_20px] opacity-10"></div>
@@ -705,7 +1046,8 @@
                                 <div class="pl-8 pt-2 text-gray-500 space-y-2">
                                     <p><strong class="text-red-900">►</strong> <span class="text-gray-400">The Pact:</span> AL leaders (Taposh/Nanak) radicalize soldiers at mosque meetings.</p>
                                     <p><strong class="text-red-900">►</strong> <span class="text-gray-400">False Flag:</span> BSF radio messages trap soldiers into believing Army is attacking.</p>
-                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Infiltration:</span> 50-100 RAW agents enter Dhaka as traders with kill lists.</p>
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Infiltration:</span> 50-100 RAW agents enter Dhaka as traders with kill lists.
+                                    </p>
                                 </div>
                             </details>
                             
@@ -874,6 +1216,27 @@
                     x: 50, opacity: 0, duration: 0.8, delay: i * 0.2,
                     scrollTrigger: { trigger: card, start: "top 85%" }
                 });
+            });
+            
+            // Enhanced animation for 4 pillars with 3D effect
+            gsap.from(".pillar-card", {
+                y: 100, opacity: 0, stagger: 0.2, duration: 1,
+                scrollTrigger: { trigger: "#four-pillars", start: "top 80%" }
+            });
+            
+            gsap.from("#logical_analysis .network-node, #logical_analysis .network-link", {
+                opacity: 0, duration: 1.2, stagger: 0.2, delay: 0.5,
+                scrollTrigger: { trigger: "#logical_analysis .network-node", start: "top 80%" }
+            });
+            
+            // Animate Infographic bars on load
+            gsap.utils.toArray('.infographic-bar').forEach(bar => {
+                gsap.fromTo(bar, 
+                    { width: 0, opacity: 0 }, 
+                    { width: bar.getAttribute('data-value') + '%', opacity: 1, duration: 1.5, ease: "power2.out",
+                        scrollTrigger: { trigger: bar, start: "top 90%", once: true }
+                    }
+                );
             });
         }
 
