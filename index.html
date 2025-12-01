@@ -3,19 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Red Chapter: Pilkhana Massacre</title>
+    <title>The Red Chapter: Pilkhana Massacre - CLASSIFIED</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- GSAP & ScrollTrigger -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Oswald:wght@300;500;700&family=Playfair+Display:ital,wght@1,400;1,700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
-    <!-- Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
@@ -372,20 +368,64 @@
             max-height: 400px;
             opacity: 1;
         }
+        
+        /* New Decapitation Target Visual */
+        .decapitation-target {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+            background: rgba(10, 10, 10, 0.9);
+            border: 2px dashed #8a0303;
+            border-radius: 10px;
+        }
+        .target-group {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        .target-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 150px;
+            padding: 1rem;
+            background: #1f1d1d;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+        .target-node:hover {
+            transform: scale(1.05);
+            background: #252323;
+        }
+        .target-icon {
+            color: #f59e0b;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Narrative Specific Styles */
+        .narrative-box {
+            background: #0a0a0a; /* Changed from #000 to match section background or slightly darker */
+            border-left: 5px solid var(--blood-red);
+            padding: 2.5rem;
+            box-shadow: 0 0 20px rgba(138, 3, 3, 0.2);
+        }
+        /* Removed unnecessary narrative-details and related styles since we are restructuring the content */
     </style>
 </head>
 <body class="bg-black text-gray-300 antialiased selection:bg-red-900 selection:text-white">
 
-    <!-- PRELOADER - SECRET FILES THEME -->
     <div id="preloader" class="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center top-secret">
         <div class="w-full max-w-2xl px-6">
-            <!-- Classified Stamp -->
             <div class="classified-stamp mb-8">
                 <div class="glitch" data-text="TOP SECRET // EYES ONLY">TOP SECRET // EYES ONLY</div>
                 <div class="text-xs mt-2">CLASSIFICATION LEVEL: BLACK</div>
             </div>
             
-            <!-- Progress Area -->
             <div class="mb-6">
                 <div class="flex justify-between mb-2 font-mono text-xs text-red-500">
                     <span>DECRYPTING CLASSIFIED FILES...</span>
@@ -396,7 +436,6 @@
                 </div>
             </div>
             
-            <!-- Status Messages -->
             <div class="font-mono text-xs text-gray-500 space-y-1">
                 <div id="status-line-1">> INITIALIZING SECURITY PROTOCOLS...</div>
                 <div id="status-line-2" class="hidden">> ACCESSING RESTRICTED DATABASE...</div>
@@ -405,7 +444,6 @@
                 <div id="status-line-5" class="hidden">> LOADING CLASSIFIED CONTENT...</div>
             </div>
             
-            <!-- Warning -->
             <div class="mt-8 text-center">
                 <div class="text-[10px] text-red-600 uppercase tracking-widest border border-red-600 px-2 py-1 inline-block">
                     UNAUTHORIZED ACCESS IS PUNISHABLE BY LAW
@@ -414,7 +452,6 @@
         </div>
     </div>
 
-    <!-- NAVIGATION -->
     <nav class="fixed top-0 w-full z-50 bg-black/90 backdrop-blur-md border-b border-gray-900">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
@@ -423,8 +460,8 @@
                     THE RED CHAPTER
                 </div>
                 
-                <!-- Desktop Menu -->
                 <div class="hidden md:flex space-x-6 text-xs uppercase tracking-widest text-gray-400">
+                    <a href="#narrative" class="hover:text-white transition text-red-500 font-bold">The Narrative</a>
                     <a href="#motive" class="hover:text-white transition hover:text-red-500">The Motive</a>
                     <a href="#nexus" class="hover:text-white transition hover:text-red-500">The Nexus</a>
                     <a href="#logical_analysis" class="hover:text-white transition text-yellow-500 font-bold">The Analysis</a>
@@ -433,14 +470,13 @@
                     <a href="#revolution" class="hover:text-white transition text-green-500 font-bold">Rebirth</a>
                 </div>
                 
-                <!-- Mobile Menu Button -->
                 <div class="md:hidden text-red-600 cursor-pointer" onclick="toggleMobileMenu()">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </div>
             </div>
             
-            <!-- Mobile Menu Dropdown -->
             <div id="mobile-menu" class="md:hidden flex flex-col items-center mt-2 border-t border-gray-800 bg-black/95">
+                <a href="#narrative" onclick="toggleMobileMenu()" class="py-3 text-xs uppercase tracking-widest text-red-500 font-bold w-full text-center border-b border-gray-800">The Narrative</a>
                 <a href="#motive" onclick="toggleMobileMenu()" class="py-3 text-xs uppercase tracking-widest text-gray-400 hover:text-red-500 w-full text-center border-b border-gray-800">The Motive</a>
                 <a href="#nexus" onclick="toggleMobileMenu()" class="py-3 text-xs uppercase tracking-widest text-gray-400 hover:text-red-500 w-full text-center border-b border-gray-800">The Nexus</a>
                 <a href="#logical_analysis" onclick="toggleMobileMenu()" class="py-3 text-xs uppercase tracking-widest text-yellow-500 font-bold w-full text-center border-b border-gray-800">The Analysis</a>
@@ -451,31 +487,26 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION -->
     <section class="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden border-b border-red-900/20 pt-20 pb-10">
         <div class="rain"></div>
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-red-950/20 via-black to-black"></div>
         
-        <!-- Blood Drips -->
         <div class="absolute top-0 left-10 blood-drip h-40"></div>
         <div class="absolute top-0 right-20 blood-drip h-64 animation-delay-2000"></div>
 
         <div class="relative z-10 text-center px-4 max-w-5xl">
             
-            <!-- Flags and Emblem Container -->
             <div class="flex justify-center items-center gap-8 mb-8">
-                <!-- Bangladesh Flag with Blood Splash -->
                 <div class="blood-overlay-container transform -rotate-6 scale-110 shadow-2xl shadow-red-900/50">
                    <img
-                      src="https://flagcdn.com/w160/bd.png"
-                      srcset="https://flagcdn.com/w320/bd.png 2x"
-                      width="100"
-                      height="75"
-                      alt="Bangladesh"
-                      class="blood-splatter opacity-80 rounded-sm">
+                     src="https://flagcdn.com/w160/bd.png"
+                     srcset="https://flagcdn.com/w320/bd.png 2x"
+                     width="100"
+                     height="75"
+                     alt="Bangladesh"
+                     class="blood-splatter opacity-80 rounded-sm">
                 </div>
 
-                <!-- Army Roundel with Blood Splash -->
                 <div class="blood-overlay-container transform rotate-6 scale-110">
                     <img 
                         src="https://upload.wikimedia.org/wikipedia/commons/4/43/Roundel_of_Bangladesh_%E2%80%93_Army_Aviation.svg" 
@@ -503,21 +534,94 @@
             <div class="h-12 w-[1px] bg-gradient-to-b from-red-600 to-transparent"></div>
         </div>
     </section>
+    
+    <hr class="border-red-900/50">
 
-    <!-- SECTION 1: HISTORICAL CONTEXT (THE MOTIVE) -->
+    <section id="narrative" class="py-24 px-6 bg-[#0a0a0a] relative border-b border-red-900">
+        <div class="container mx-auto max-w-5xl">
+            <h2 class="text-4xl font-cinzel text-red-600 mb-6 text-center">EYEWITNESS NARRATIVE</h2>
+            <h3 class="text-xl font-oswald text-yellow-500 mb-12 text-center uppercase tracking-widest">THE STORY THEY TRIED TO BURY</h3>
+
+            <div class="narrative-box mx-auto">
+                <p class="text-gray-400 leading-relaxed text-base">
+                    They told us it was just another <span class="font-bold text-white">February morning in Dhaka</span>. The sun was mild, the streets were busy, and the new government had been in power for less than two months. Everything felt calm, almost hopeful.
+                </p>
+                <p class="text-gray-400 leading-relaxed text-base mt-4 border-l-2 border-yellow-500 pl-4">
+                    But inside one walled compound in the middle of the capital, <span class="font-bold text-red-400">something ancient and evil was already counting heartbeats</span>. It had waited patiently for years, watching the officers who once stood fearlessly on the border and said "no" to a bigger neighbour. It had studied their faces, their families, their habits. It knew exactly who had to disappear for Bangladesh to become harmless forever.
+                </p>
+
+                <div class="mt-10 space-y-8 relative">
+                    <!-- Vertical divider line for the narrative flow -->
+                    <div class="absolute left-3 top-0 bottom-0 w-[2px] bg-red-900/50"></div>
+
+                    <!-- Narrative Step 1: The Trap -->
+                    <div class="relative pl-10 group">
+                        <i data-lucide="zap" class="w-6 h-6 text-red-500 absolute -left-3.5 top-0 bg-[#0a0a0a] p-1 rounded-full border-2 border-red-900 group-hover:bg-red-900 transition"></i>
+                        <h4 class="font-cinzel text-xl text-white mb-2">FEB 25, 09:26 AM: The Trap</h4>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            At <span class="font-mono text-yellow-400">09:26 a.m.</span> the first shouts rose (ordinary soldiers waving flags, thinking they were only asking for better food). They were the bait. By <span class="font-mono text-yellow-400">09:30 a.m.</span> the real hunters were inside the gate, moving silently, speaking a <span class="font-bold text-red-400">language that did not belong here</span>. By <span class="font-mono text-yellow-400">11:00 a.m.</span> the systematic killings started.
+                        </p>
+                    </div>
+
+                    <!-- Narrative Step 2: The Assassination -->
+                    <div class="relative pl-10 group">
+                        <i data-lucide="skull" class="w-6 h-6 text-red-500 absolute -left-3.5 top-0 bg-[#0a0a0a] p-1 rounded-full border-2 border-red-900 group-hover:bg-red-900 transition"></i>
+                        <h4 class="font-cinzel text-xl text-white mb-2">LAST PHONE CALLS & THE MONSTER</h4>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            Wives heard their husbands' last breaths: <span class="font-bold text-red-400">"They're dragging us out… they speak Hindi… tell the children I love…"</span> Somewhere far from the blood, the monster listened to every plea and did nothing. In a single morning, the plot murdered <span class="font-bold text-red-400">57 of Bangladesh's bravest officers</span> and wounded the soul of an entire nation. It was the first day of a 16-year occupation.
+                        </p>
+                    </div>
+
+                    <!-- Narrative Step 3: The Target & Partners -->
+                    <div class="relative pl-10 group">
+                        <i data-lucide="target" class="w-6 h-6 text-red-500 absolute -left-3.5 top-0 bg-[#0a0a0a] p-1 rounded-full border-2 border-red-900 group-hover:bg-red-900 transition"></i>
+                        <h4 class="font-cinzel text-xl text-white mb-2">THE REAL TARGET & THE PARTNERS</h4>
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            The officers were <span class="font-bold text-red-400">not random names</span>. They were the top commanders and trainers who had <span class="font-bold text-red-400">stood firm against foreign hegemony</span> in border clashes in 2001 and 2008.
+                        </p>
+                        <div class="mt-4 p-4 border border-gray-700 rounded-lg bg-black/50 text-xs">
+                            <p class="text-red-400 font-bold mb-1 uppercase tracking-wider">The Conspirators:</p>
+                            <p class="text-white">
+                                <span class="text-yellow-500 font-bold">Inside Bangladesh:</span> Sheikh Hasina's Awami League team <span class="text-gray-500"></span>.
+                            </p>
+                            <p class="text-white mt-1">
+                                <span class="text-yellow-500 font-bold">Outside Bangladesh:</span> India's intelligence agency <span class="text-red-400">RAW</span> and its elite <span class="text-red-400">"Black Cat" commandos</span> <span class="text-gray-500"></span>.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <p class="text-xl font-playfair italic text-gray-300 max-w-4xl mx-auto leading-relaxed border-t border-gray-700 pt-8">
+                    "The commission has handed the truth to the nation. Now the question is: will Bangladesh find the courage to tell the world who really killed its heroes that February morning?"
+                </p>
+                <a href="https://radiantrider38.github.io/bdrreport/" class="inline-block mt-8 px-10 py-4 bg-red-700 hover:bg-red-800 text-white font-oswald tracking-widest uppercase transition-all shadow-lg shadow-red-900/50">
+                    <span class="flex items-center gap-3">
+                        <i data-lucide="file-check" class="w-5 h-5"></i>
+                        VIEW NATIONAL INDEPENDENT COMMISSION INVESTIGATION REPORT
+                    </span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <hr class="border-red-900/50">
+
     <section id="motive" class="py-24 px-6 bg-[#0a0a0a] relative border-b border-gray-900">
         <div class="container mx-auto max-w-6xl">
             <div class="flex flex-col md:flex-row gap-12">
                 <div class="md:w-1/3">
                     <h2 class="text-4xl font-cinzel text-white mb-2">THE MOTIVE</h2>
-                    <h3 class="text-xl text-red-600 font-oswald uppercase tracking-widest mb-6">Revenge for Border Clashes</h3>
+                    <h3 class="text-xl text-red-600 font-oswald uppercase tracking-widest mb-6">Decapitation for Sovereignty</h3>
                     <p class="text-gray-400 leading-relaxed text-sm md:text-base">
-                        India's alleged motive traces to escalating BDR-BSF tensions in the late 90s. The Pilkhana massacre is cited by the 2025 Commission as a "decapitation strike" to avenge Indian losses (Boraibari & Padua) and install a pliable regime in Dhaka.
+                        The 2025 Commission states the Pilkhana massacre was a "planned massacre" intended to <span class="font-bold text-red-400">decapitate the Bangladesh Army's leadership</span>. The officers killed were the top commanders and trainers, the very men who had successfully stood firm against India in border clashes. A country without its best officers becomes weak, scared, and easy to control from the outside.
                     </p>
                     <div class="mt-8 p-4 bg-red-950/10 border border-red-900/30">
                         <i data-lucide="quote" class="text-red-800 w-6 h-6 mb-2"></i>
-                        <p class="font-playfair italic text-gray-300 text-sm">"A repeat of Plassey... they killed the best of us to rule the rest of us."</p>
-                        <p class="text-xs text-red-500 mt-2 font-bold">- Maj. Gen. (retd) ALM Fazlur Rahman</p>
+                        <p class="font-playfair italic text-gray-300 text-sm">"India wanted a weak, frightened Bangladesh that would never say no to Delhi again."</p>
+                        <p class="text-xs text-red-500 mt-2 font-bold">- 2025 Commission Report</p>
                     </div>
                 </div>
 
@@ -531,7 +635,7 @@
                                 <h4 class="text-lg font-bold text-white">Boraibari Clash (1999)</h4>
                                 <span class="text-xs font-mono text-red-500">TRIGGER POINT</span>
                             </div>
-                            <p class="text-sm text-gray-400 mt-2">BDR killed 16 Indian BSF jawans in a disputed enclave. RAW reportedly initiated long-term destabilization plans immediately after this humiliation.</p>
+                            <p class="text-sm text-gray-400 mt-2">BDR killed 16 Indian BSF jawans in a disputed enclave. This was a critical event that allegedly prompted the long-term destabilization plan.</p>
                         </div>
                     </div>
 
@@ -544,7 +648,7 @@
                                 <h4 class="text-lg font-bold text-white">Padua-Roumari (2001)</h4>
                                 <span class="text-xs font-mono text-red-500">ESCALATION</span>
                             </div>
-                            <p class="text-sm text-gray-400 mt-2">BDR successfully defended territory, killing 16 BSF personnel. This successful defense by the BDR earned the permanent ire of RAW, fueling the vendetta to destroy the force.</p>
+                            <p class="text-sm text-gray-400 mt-2">BDR successfully defended territory, killing 16 BSF personnel. This successful defense by the BDR fueled the vendetta to destroy the force.</p>
                         </div>
                     </div>
                 </div>
@@ -552,7 +656,6 @@
         </div>
     </section>
 
-    <!-- SECTION: THE BLUEPRINT -->
     <section id="blueprint" class="py-24 bg-[#050505] relative border-b border-gray-900 overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-900 via-black to-black opacity-50"></div>
         <div class="container mx-auto px-6 max-w-7xl relative z-10">
@@ -563,66 +666,58 @@
             </div>
 
             <div class="grid md:grid-cols-4 gap-4 relative">
-                <!-- Connector Line (Desktop) -->
                 <div class="hidden md:block absolute top-12 left-0 w-full h-1 bg-gradient-to-r from-gray-800 via-red-900 to-gray-800 -z-10"></div>
 
-                <!-- STEP 1 -->
                 <div class="bg-neutral-900/80 border border-gray-800 p-6 relative hover:border-red-600 transition duration-300">
                     <div class="w-12 h-12 bg-black border-2 border-gray-600 text-gray-400 rounded-full flex items-center justify-center font-bold text-xl mb-4 mx-auto z-20 relative">1</div>
                     <h3 class="text-center text-red-500 font-oswald text-xl mb-2">THE DEAL (2007-08)</h3>
                     <ul class="text-xs text-gray-400 space-y-2 list-disc pl-4">
-                        <li><strong>RAW & AL Pact:</strong> Strategy formulated to return AL to power in exchange for weakening the military.</li>
-                        <li><strong>Mosque Meetings:</strong> Taposh & Nanak radicalize soldiers using "Dal-Bhat" wage grievances as cover.</li>
+                        <li><span class="font-bold text-red-400">RAW & AL Pact:</span> Strategy formulated to return AL to power in exchange for weakening the military.</li>
+                        <li><span class="font-bold text-red-400">Mosque Meetings:</span> Taposh & Nanak radicalize soldiers using "Dal-Bhat" wage grievances as cover.</li>
                     </ul>
                 </div>
 
-                <!-- STEP 2 -->
                 <div class="bg-neutral-900/80 border border-gray-800 p-6 relative hover:border-red-600 transition duration-300">
                     <div class="w-12 h-12 bg-black border-2 border-red-800 text-red-600 rounded-full flex items-center justify-center font-bold text-xl mb-4 mx-auto z-20 relative animate-pulse">2</div>
                     <h3 class="text-center text-red-500 font-oswald text-xl mb-2">THE TRAP (FEB 2009)</h3>
                     <ul class="text-xs text-gray-400 space-y-2 list-disc pl-4">
-                        <li><strong>False Flag:</strong> BSF sends messages "Army coming to kill you" to panic soldiers.</li>
-                        <li><strong>Infiltration:</strong> RAW agents enter as traders with specific ammo & kill lists.</li>
-                        <li><strong>Disarmament:</strong> 3 SMGs stolen beforehand to test security.</li>
+                        <li><span class="font-bold text-red-400">False Flag:</span> BSF sends messages "Army coming to kill you" to panic soldiers.</li>
+                        <li><span class="font-bold text-red-400">Infiltration:</span> RAW agents (Black Cats) enter with specific ammo & kill lists.</li>
+                        <li><span class="font-bold text-red-400">Disarmament:</span> 3 SMGs stolen beforehand to test security.</li>
                     </ul>
                 </div>
 
-                <!-- STEP 3 -->
                 <div class="bg-neutral-900/80 border border-gray-800 p-6 relative hover:border-red-600 transition duration-300">
                     <div class="w-12 h-12 bg-black border-2 border-red-600 text-white rounded-full flex items-center justify-center font-bold text-xl mb-4 mx-auto z-20 relative">3</div>
                     <h3 class="text-center text-white font-oswald text-xl mb-2">THE EXECUTION</h3>
                     <ul class="text-xs text-gray-400 space-y-2 list-disc pl-4">
-                        <li><strong>10:30 AM Betrayal:</strong> Hasina orders Army stand-down.</li>
-                        <li><strong>White Flag Deception:</strong> AL leaders enter to "negotiate" but actually buy time for body disposal.</li>
-                        <li><strong>Targeted Killing:</strong> Only bright, anti-hegemony officers identified and shot.</li>
+                        <li><span class="font-bold text-red-400">10:30 AM Betrayal:</span> Hasina orders Army stand-down.</li>
+                        <li><span class="font-bold text-red-400">White Flag Deception:</span> AL leaders enter to "negotiate" but actually buy time for body disposal.</li>
+                        <li><span class="font-bold text-red-400">Targeted Killing:</span> Only bright, anti-hegemony officers identified and shot.</li>
                     </ul>
                 </div>
 
-                <!-- STEP 4 -->
                 <div class="bg-neutral-900/80 border border-gray-800 p-6 relative hover:border-red-600 transition duration-300">
                     <div class="w-12 h-12 bg-black border-2 border-gray-600 text-gray-400 rounded-full flex items-center justify-center font-bold text-xl mb-4 mx-auto z-20 relative">4</div>
                     <h3 class="text-center text-gray-400 font-oswald text-xl mb-2">THE COVER-UP</h3>
                     <ul class="text-xs text-gray-400 space-y-2 list-disc pl-4">
-                        <li><strong>Witness Silencing:</strong> Pesh Imam hanged. Investigation officers killed in custody.</li>
-                        <li><strong>Media Control:</strong> Narrative shifted to "Mutiny due to food/wages".</li>
-                        <li><strong>Sovereignty Lost:</strong> BDR disbanded. Army morale broken for 16 years.</li>
+                        <li><span class="font-bold text-red-400">Witness Silencing:</span> Major Suman vanished. Investigation officers killed in custody.</li>
+                        <li><span class="font-bold text-red-400">Media Control:</span> Narrative shifted to "Mutiny due to food/wages".</li>
+                        <li><span class="font-bold text-red-400">Sovereignty Lost:</span> BDR disbanded. Army morale broken for 16 years.</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 3: THE DOMESTIC NEXUS (GRAPHICAL MESH) -->
     <section id="nexus" class="py-24 bg-neutral-900 border-y border-gray-800 relative mesh-bg">
         <div class="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent"></div>
         
         <div class="container mx-auto px-6 max-w-6xl relative z-10">
             <h2 class="text-4xl font-cinzel text-white mb-16 text-center">THE DOMESTIC NEXUS</h2>
 
-            <!-- MESH NETWORK DIAGRAM -->
             <div class="relative w-full h-[600px] md:h-[500px] bg-black/50 border border-gray-800 rounded-xl overflow-hidden shadow-2xl">
                 
-                <!-- Central Node: HASINA -->
                 <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 flex flex-col items-center group cursor-pointer">
                     <div class="w-24 h-24 rounded-full border-4 border-red-700 bg-gray-900 flex items-center justify-center relative shadow-[0_0_30px_rgba(220,38,38,0.4)]">
                         <i data-lucide="crown" class="w-10 h-10 text-white"></i>
@@ -635,7 +730,6 @@
                     </div>
                 </div>
 
-                <!-- Top Left: TAPOSH -->
                 <div class="absolute top-[15%] left-[10%] md:left-[20%] z-20 flex flex-col items-center group">
                     <div class="w-16 h-16 rounded-full border-2 border-gray-600 bg-gray-800 flex items-center justify-center hover:border-red-500 transition">
                         <i data-lucide="pen-tool" class="w-6 h-6 text-gray-400"></i>
@@ -643,11 +737,10 @@
                     <h4 class="text-sm font-oswald text-gray-300 mt-2">TAPOSH</h4>
                     <p class="text-[10px] text-red-500 uppercase">THE ARCHITECT</p>
                     <div class="absolute top-full mt-1 bg-black/90 border border-gray-700 p-2 text-[10px] w-40 text-center hidden group-hover:block">
-                        Organized 2007 Mosque Meetings.<br>Fabricated Bomb Plots.
+                        Main Coordinator of the killing mission.<br>Provided uniforms to Black Cats.
                     </div>
                 </div>
 
-                <!-- Top Right: NANAK -->
                 <div class="absolute top-[15%] right-[10%] md:right-[20%] z-20 flex flex-col items-center group">
                     <div class="w-16 h-16 rounded-full border-2 border-gray-600 bg-gray-800 flex items-center justify-center hover:border-red-500 transition">
                         <i data-lucide="flag-triangle-right" class="w-6 h-6 text-gray-400"></i>
@@ -655,23 +748,21 @@
                     <h4 class="text-sm font-oswald text-gray-300 mt-2">NANAK</h4>
                     <p class="text-[10px] text-red-500 uppercase">THE MOBILIZER</p>
                     <div class="absolute top-full mt-1 bg-black/90 border border-gray-700 p-2 text-[10px] w-40 text-center hidden group-hover:block">
-                        Led "White Flag" team.<br>Negotiated killer's escape.
+                        Led "White Flag" team.<br>Facilitated killer's escape.
                     </div>
                 </div>
 
-                <!-- Bottom Left: EXTERNAL (RAW) -->
                 <div class="absolute bottom-[15%] left-[10%] md:left-[20%] z-20 flex flex-col items-center group">
                     <div class="w-16 h-16 rounded-full border-2 border-red-900 bg-[#0f120e] flex items-center justify-center hover:border-red-500 transition shadow-[0_0_15px_rgba(100,0,0,0.5)]">
                         <i data-lucide="globe-2" class="w-6 h-6 text-red-700"></i>
                     </div>
-                    <h4 class="text-sm font-oswald text-gray-300 mt-2">RAW / BSF</h4>
+                    <h4 class="text-sm font-oswald text-gray-300 mt-2">RAW / BLACK CATS</h4>
                     <p class="text-[10px] text-red-500 uppercase">THE HANDLERS</p>
                     <div class="absolute bottom-full mb-1 bg-black/90 border border-gray-700 p-2 text-[10px] w-40 text-center hidden group-hover:block">
-                        Provided Ammo & Intel.<br>Tri-Border Threat.
+                        12-15 commandos executed the mission.<br>Tri-Border Threat blocked Army.
                     </div>
                 </div>
 
-                <!-- Bottom Right: MOTIVE -->
                 <div class="absolute bottom-[15%] right-[10%] md:right-[20%] z-20 flex flex-col items-center group">
                     <div class="w-16 h-16 rounded-full border-2 border-gray-600 bg-gray-800 flex items-center justify-center hover:border-red-500 transition">
                         <i data-lucide="skull" class="w-6 h-6 text-gray-400"></i>
@@ -679,22 +770,16 @@
                     <h4 class="text-sm font-oswald text-gray-300 mt-2">DECAPITATION</h4>
                     <p class="text-[10px] text-red-500 uppercase">THE OBJECTIVE</p>
                     <div class="absolute bottom-full mb-1 bg-black/90 border border-gray-700 p-2 text-[10px] w-40 text-center hidden group-hover:block">
-                        Kill 57 Officers.<br>Destroy Army Morale.<br>Install Puppet Regime.
+                        Kill 57 Officers .<br>Destroy Army Morale.<br>Install Puppet Regime.
                     </div>
                 </div>
 
-                <!-- CONNECTOR LINES (SVG) -->
                 <svg class="absolute inset-0 w-full h-full pointer-events-none z-10">
-                    <!-- Hasina to Taposh -->
                     <line x1="50%" y1="50%" x2="20%" y2="20%" stroke="#333" stroke-width="2" class="md:block hidden" />
-                    <!-- Hasina to Nanak -->
                     <line x1="50%" y1="50%" x2="80%" y2="20%" stroke="#333" stroke-width="2" class="md:block hidden" />
-                    <!-- Hasina to RAW -->
                     <line x1="50%" y1="50%" x2="20%" y2="80%" stroke="#8a0303" stroke-width="2" stroke-dasharray="5,5" class="md:block hidden" />
-                    <!-- Hasina to Motive -->
                     <line x1="50%" y1="50%" x2="80%" y2="80%" stroke="#8a0303" stroke-width="2" class="md:block hidden" />
                     
-                    <!-- Mobile Lines (Simplified) -->
                     <line x1="50%" y1="50%" x2="10%" y2="15%" stroke="#333" stroke-width="1" class="md:hidden" />
                     <line x1="50%" y1="50%" x2="90%" y2="15%" stroke="#333" stroke-width="1" class="md:hidden" />
                 </svg>
@@ -702,82 +787,117 @@
         </div>
     </section>
 
-    <!-- NEW SECTION: LOGICAL NEXUS: OSINT & AI-BASED EVIDENCE -->
     <section id="logical_analysis" class="py-24 bg-neutral-800/10 relative border-b border-gray-900 overflow-hidden">
         <div class="absolute inset-0 bg-yellow-900/5 opacity-50"></div>
         <div class="container mx-auto px-6 relative z-10 max-w-7xl">
             <div class="text-center mb-16">
                 <span class="text-yellow-500 font-mono text-xs tracking-widest border border-yellow-700 px-2 py-1">ACADEMIC STUDY & FORENSIC ANALYSIS</span>
-                <h2 class="text-4xl md:text-5xl font-cinzel text-white mt-4">LOGICAL NEXUS: OSINT & AI-BASED EVIDENCE</h2>
-                <p class="text-gray-500 mt-2 font-playfair italic">A simplified breakdown of the core conclusions from the 2025 investigative study, focusing on foreign subversion.</p>
+                <h2 class="text-4xl md:text-5xl font-cinzel text-white mt-4">NATIONAL INDEPENDENT COMMISSION OF INQUIRY FINAL REPORT</h2>
+                <p class="text-gray-500 mt-2 font-playfair italic">Core conclusions from the 2025 investigative study, focusing on foreign subversion and domestic coordination.</p>
             </div>
 
-            <!-- LOGICAL DISCUSSION & OVERVIEW -->
             <div class="bg-black/80 p-6 md:p-10 rounded-lg border-l-4 border-red-600 shadow-2xl mb-16">
                 <h3 class="text-2xl font-cinzel text-red-500 mb-4 flex items-center gap-3">
-                    <i data-lucide="microscope" class="w-6 h-6 text-yellow-500"></i> The Logical Discussion
+                    <i data-lucide="file-text" class="w-6 h-6 text-yellow-500"></i> Executive Summary (Nov 30, 2025)
                 </h3>
                 <p class="text-gray-400 leading-relaxed text-sm md:text-base">
-                    The Pilkhana tragedy was not a spontaneous workplace dispute. Our analysis, combining Open-Source Intelligence (OSINT) and AI pattern recognition, reveals a **calculated, multilayered operation** that exploited deep-seated internal weaknesses. The timing, the specific targeting of senior command, and the immediate deployment of a specific media narrative all point away from a simple mutiny and toward a geopolitical decapitation strike. The logical chain of events connects external financial support and agent deployment (like Lucky Bisht's alleged role) to pre-existing BDR dissatisfaction, culminating in the massacre. The ensuing media blackout and narrative framing acted as the final stage of the plot—a strategic cover-up that successfully shielded foreign actors for over a decade.
+                    The Commission concluded that the tragic event of February 25, 2009, was <span class="font-bold text-white">not a soldier's rebellion</span> ("mutiny") but a <span class="font-bold text-red-400">planned massacre</span>. It was coordinated by the then-ruling <span class="font-bold text-red-400">Awami League government</span> and external <span class="font-bold text-red-400">Indian forces</span> to decapitate the Bangladesh Army's leadership. The operation's intent was to weaken Bangladesh's sovereignty and ensure the military remained subservient to foreign influence.
                 </p>
+                <div class="mt-4 text-xs text-red-400 font-mono">
+                    <p>* Report submitted to Chief Advisor Professor Muhammad Yunus.</p>
+                </div>
             </div>
             
-            <!-- THE FOUR PILLARS OF CONSPIRACY - Enhanced Visual Presentation -->
+            <h3 class="text-3xl font-cinzel text-white mt-4 mb-8 text-center border-b border-gray-700 pb-4">THE DECAPITATION TARGET: WHY SPECIFIC OFFICERS?</h3>
+            
+            <div class="decapitation-target mx-auto mb-16">
+                <div class="w-40 h-40 rounded-full border-4 border-red-500 bg-red-900/20 flex items-center justify-center text-center p-4 shadow-red-900/50 shadow-lg animate-pulse">
+                    <div class="text-2xl font-cinzel text-red-400 uppercase font-bold leading-tight">
+                        57<br>MARTYRED<br>OFFICERS
+                    </div>
+                </div>
+                
+                <div class="text-white my-4 font-mono text-xl tracking-wider">
+                    <i data-lucide="arrow-down" class="w-6 h-6 text-red-500 animate-bounce"></i>
+                </div>
+                
+                <p class="text-lg text-yellow-400 font-bold mb-6 text-center">ELIMINATION CRITERIA (The Sword & Shield)</p>
+                
+                <div class="target-group">
+                    <div class="target-node">
+                        <i data-lucide="users" class="target-icon w-8 h-8"></i>
+                        <p class="text-sm font-bold text-white">TOP COMMANDERS</p>
+                        <p class="text-xs text-gray-400 mt-1">Colonel & above; those with strategic influence.</p>
+                    </div>
+                    <div class="target-node">
+                        <i data-lucide="shield-check" class="target-icon w-8 h-8"></i>
+                        <p class="text-sm font-bold text-white">BORDER DEFENDERS</p>
+                        <p class="text-xs text-gray-400 mt-1">Officers who stood firm in the 2001 & 2008 clashes.</p>
+                    </div>
+                    <div class="target-node">
+                        <i data-lucide="cpu" class="target-icon w-8 h-8"></i>
+                        <p class="text-sm font-bold text-white">INTEL & TRAINERS</p>
+                        <p class="text-xs text-gray-400 mt-1">The 'brains' and future leadership of the Army.</p>
+                    </div>
+                    <div class="target-node">
+                        <i data-lucide="swords" class="target-icon w-8 h-8"></i>
+                        <p class="text-sm font-bold text-white">ANTI-HEGEMONY</p>
+                        <p class="text-xs text-gray-400 mt-1">Those most likely to oppose foreign control.</p>
+                    </div>
+                </div>
+                <div class="mt-8 text-red-400 text-sm font-mono text-center">
+                    **OBJECTIVE:** Cripple the Army's ability to operate and resist foreign influence for a generation.
+                </div>
+            </div>
             <h3 class="text-3xl font-cinzel text-white mt-4 mb-8 text-center border-b border-gray-700 pb-4">FOUR PILLARS OF EXTERNAL SUBVERSION</h3>
             <div class="grid lg:grid-cols-4 gap-8 mb-16 pillars-container" id="four-pillars">
-                <!-- PILLAR 1: INTERNAL VULNERABILITY -->
                 <div class="pillar-card logical-node p-6 rounded-lg pillar-item">
                     <div class="pillar-icon w-16 h-16 bg-yellow-900/30 rounded-full flex items-center justify-center mb-4 mx-auto">
                         <i data-lucide="shield-off" class="text-yellow-500 w-8 h-8"></i>
                     </div>
                     <h3 class="text-xl font-oswald text-white mb-2 text-center">1. EXPLOITABLE FRACTURE</h3>
-                    <p class="text-sm text-gray-400 text-center">The historical grievances (low pay, rank abuse) were the **fuel**. They were intentionally magnified by external handlers to turn frustration into violent rebellion.</p>
+                    <p class="text-sm text-gray-400 text-center">Historical grievances (low pay, rank abuse) were the <span class="font-bold text-red-400">fuel</span>. They were intentionally magnified by local AL leaders as a smokescreen.</p>
                     <div class="mt-4 text-xs text-yellow-500 text-center">
-                        <p><strong>Key Evidence:</strong> Pre-existing wage disputes, rank discrimination</p>
+                        <p><strong>Key Evidence:</strong> Wage disputes, rank discrimination</p>
                     </div>
                 </div>
-                <!-- PILLAR 2: EXTERNAL ORCHESTRATION -->
                 <div class="pillar-card logical-node p-6 rounded-lg pillar-item">
                     <div class="pillar-icon w-16 h-16 bg-red-900/30 rounded-full flex items-center justify-center mb-4 mx-auto">
                         <i data-lucide="satellite" class="text-red-500 w-8 h-8"></i>
                     </div>
                     <h3 class="text-xl font-oswald text-white mb-2 text-center">2. COVERT INFILTRATION</h3>
-                    <p class="text-sm text-gray-400 text-center">R&AW operatives, utilizing deep-cover assets near border towns, directed the action. The Hindi voices and non-standard weapons found reinforce direct external involvement.</p>
+                    <p class="text-sm text-gray-400 text-center"><span class="font-bold text-red-400">Black Cat commandos (12-15)</span> executed the mission. Hindi voices and Indian <span class="font-bold text-red-400">"Tiger" slings</span> were key evidence of foreign involvement.</p>
                     <div class="mt-4 text-xs text-red-500 text-center">
-                        <p><strong>Key Evidence:</strong> Hindi voices, non-standard weapons, agent infiltration</p>
+                        <p><strong>Key Evidence:</strong> Hindi voices, "Tiger" slings, Black Cat team</p>
                     </div>
                 </div>
-                <!-- PILLAR 3: NARRATIVE MANIPULATION -->
                 <div class="pillar-card logical-node p-6 rounded-lg pillar-item">
                     <div class="pillar-icon w-16 h-16 bg-red-700/30 rounded-full flex items-center justify-center mb-4 mx-auto">
                         <i data-lucide="rss" class="text-red-300 w-8 h-8"></i>
                     </div>
                     <h3 class="text-xl font-oswald text-white mb-2 text-center">3. MEDIA CONTROL</h3>
-                    <p class="text-sm text-gray-400 text-center">Foreign media was strategically used to spread the "internal mutiny" cover story. This psychological warfare was designed to deflect global scrutiny from the true external orchestrators.</p>
+                    <p class="text-sm text-gray-400 text-center">Foreign and local media immediately spread the <span class="font-bold text-red-400">"internal mutiny"</span> cover story. This deflected global scrutiny from R&AW involvement.</p>
                     <div class="mt-4 text-xs text-red-300 text-center">
                         <p><strong>Key Evidence:</strong> Premature reporting, narrative alignment</p>
                     </div>
                 </div>
-                <!-- PILLAR 4: STATE COMPLICITY -->
                 <div class="pillar-card logical-node p-6 rounded-lg pillar-item">
                     <div class="pillar-icon w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center mb-4 mx-auto">
                         <i data-lucide="gavel" class="text-gray-300 w-8 h-8"></i>
                     </div>
                     <h3 class="text-xl font-oswald text-white mb-2 text-center">4. JUDICIAL COVER-UP</h3>
-                    <p class="text-sm text-gray-400 text-center">The post-massacre trials were manipulated to punish foot soldiers while protecting the architects. Witness deaths in custody sealed the truth.</p>
+                    <p class="text-sm text-gray-400 text-center">Trials punished foot soldiers while protecting the architects (AL/RAW). Witnesses were silenced, <span class="font-bold text-red-400">Major Suman vanished</span>.</p>
                     <div class="mt-4 text-xs text-gray-300 text-center">
-                        <p><strong>Key Evidence:</strong> Deaths in custody, destroyed evidence</p>
+                        <p><strong>Key Evidence:</strong> Witness disappearance, blocked Army intervention</p>
                     </div>
                 </div>
             </div>
             
-            <!-- NEW INFOGRAPHICS SECTION -->
-        <br>
+            <br>
         <br>
             <h3 class="text-3xl font-cinzel text-white mt-4 mb-8 text-center border-b border-gray-700 pb-4">QUANTITATIVE ANALYSIS & INFOGRAPHICS</h3>
             
             <div class="grid md:grid-cols-2 gap-8 mb-16">
-                <!-- Infographic 1: Timeline of Events -->
                 <div class="bg-black/70 p-6 rounded-xl border border-red-900/50">
                     <h4 class="text-xl font-oswald text-red-400 mb-4 flex items-center gap-2">
                         <i data-lucide="calendar" class="w-5 h-5"></i> Critical Timeline Anomalies
@@ -787,34 +907,33 @@
                             <div class="w-3 h-3 bg-red-600 rounded-full mr-3"></div>
                             <div class="flex-1">
                                 <p class="text-sm text-white">09:00 AM - Mutiny begins</p>
-                                <p class="text-xs text-gray-400">Darbar Hall stormed</p>
+                                <p class="text-xs text-gray-400">Darbar Hall stormed - <span class="font-bold text-red-400">Smokescreen</span></p>
                             </div>
                         </div>
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-red-600 rounded-full mr-3"></div>
                             <div class="flex-1">
                                 <p class="text-sm text-white">10:00 AM - Guardian reports DG's death</p>
-                                <p class="text-xs text-gray-400">Hours before official confirmation</p>
+                                <p class="text-xs text-gray-400">Hours before official confirmation - <span class="font-bold text-red-400">Media Complicity</span></p>
                             </div>
                         </div>
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-red-600 rounded-full mr-3"></div>
                             <div class="flex-1">
                                 <p class="text-sm text-white">10:30 AM - Army stand-down order</p>
-                                <p class="text-xs text-gray-400">Critical 4-hour delay begins</p>
+                                <p class="text-xs text-gray-400">Critical 4-hour delay begins due to <span class="font-bold text-red-400">Indian Threat</span></p>
                             </div>
                         </div>
                         <div class="flex items-center">
                             <div class="w-3 h-3 bg-red-600 rounded-full mr-3"></div>
                             <div class="flex-1">
-                                <p class="text-sm text-white">02:30 PM - White flag deception</p>
-                                <p class="text-xs text-gray-400">Negotiations for killer's escape</p>
+                                <p class="text-sm text-white">09:00 PM - Killer's Escape</p>
+                                <p class="text-xs text-gray-400">Home Minister's convoy and ambulance used for getaway</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Infographic 2: Casualty Analysis -->
                 <div class="bg-black/70 p-6 rounded-xl border border-red-900/50">
                     <h4 class="text-xl font-oswald text-red-400 mb-4 flex items-center gap-2">
                         <i data-lucide="users" class="w-5 h-5"></i> Targeted Officer Analysis
@@ -860,7 +979,6 @@
                 </div>
             </div>
             
-            <!-- VISUAL REPRESENTATION 1: THE COVERT NETWORK -->
             <h3 class="text-3xl font-cinzel text-white mt-4 mb-8 text-center border-b border-gray-700 pb-4">VISUAL EVIDENCE: THE COVERT CONSPIRACY NETWORK</h3>
             
             <div class="bg-black/70 p-8 rounded-xl shadow-inner border border-red-900/50 flex flex-col items-center justify-center space-y-4 md:space-y-8">
@@ -870,12 +988,12 @@
                     <div class="network-link w-1/4 h-0.5 animate-pulse"></div>
                     <i data-lucide="chevrons-right" class="text-red-700 w-5 h-5"></i>
                     <div class="network-link w-1/4 h-0.5 animate-pulse"></div>
-                    <span class="network-node bg-red-900">COVERT OPERATIVES (e.g., Lucky Bisht)</span>
+                    <span class="network-node bg-red-900">BLACK CATS (12-15 Commandos)</span>
                 </div>
                 
                 <div class="flex items-center justify-center space-x-4">
                     <i data-lucide="arrow-down" class="text-yellow-600 w-5 h-5 animate-bounce"></i>
-                    <span class="text-yellow-600 font-mono text-sm">Financing & Reconnaissance</span>
+                    <span class="text-yellow-600 font-mono text-sm">Financing & Reconnaissance. Uniforms delivered by Taposh.</span>
                     <i data-lucide="arrow-down" class="text-yellow-600 w-5 h-5 animate-bounce"></i>
                 </div>
 
@@ -884,28 +1002,26 @@
                     <div class="network-link w-1/4 h-0.5"></div>
                     <i data-lucide="chevrons-right" class="text-red-700/50 w-5 h-5"></i>
                     <div class="network-link w-1/4 h-0.5"></div>
-                    <span class="network-node bg-gray-600">BDR MUTINEER LEADERS</span>
+                    <span class="network-node bg-gray-600">BDR MUTINEER LEADERS (The Smokescreen)</span>
                 </div>
                 
                 <div class="flex items-center justify-center space-x-4">
                     <i data-lucide="arrow-down" class="text-red-600 w-5 h-5"></i>
-                    <span class="text-red-600 font-mono text-xs">Decapitation Strike</span>
+                    <span class="text-red-600 font-mono text-xs">Decapitation Strike - Green Signal from Hasina</span>
                     <i data-lucide="arrow-down" class="text-red-600 w-5 h-5"></i>
                 </div>
                 
-                <div class="network-node bg-black border border-red-500 text-red-500 text-lg">57 MARTYRED OFFICERS</div>
+                <div class="network-node bg-black border border-red-500 text-red-500 text-lg">57 MARTYRED OFFICERS </div>
 
             </div>
             
             
-            <!-- VISUAL REPRESENTATION 3: QUANTITATIVE FINDINGS (AI Sentiment and Intelligence Failure) -->
             <div class="mt-16 bg-neutral-900 p-8 rounded-xl shadow-xl border-t-2 border-red-600">
                 <h3 class="text-2xl font-oswald text-red-400 mb-6 flex items-center gap-3">
                     <i data-lucide="bar-chart-3" class="w-6 h-6 text-green-500"></i> AI-DRIVEN QUANTITATIVE ASSESSMENT
                 </h3>
                 
                 <div class="space-y-6">
-                    <!-- Data Point 1: Intelligence Failure -->
                     <div>
                         <div class="flex justify-between items-end mb-2">
                             <span class="text-sm font-bold text-gray-200 uppercase tracking-wider">INTEL FAILURE: LACK OF PRE-MUTINY ACTIONABLE REPORTS</span>
@@ -917,7 +1033,6 @@
                         <p class="text-xs text-gray-500 mt-1">**Logical Discussion:** The near-total failure to detect the external plot or internal agent activity confirms the DGFI/NSI systems were compromised or dormant. This level of blindness suggests a critical, potentially deliberate, security lapse.</p>
                     </div>
 
-                    <!-- Data Point 2: Media Narrative Bias -->
                     <div>
                         <div class="flex justify-between items-end mb-2">
                             <span class="text-sm font-bold text-gray-200 uppercase tracking-wider">SENTIMENT: ALIGNMENT OF FOREIGN MEDIA WITH 'INTERNAL DISSENT' NARRATIVE</span>
@@ -929,7 +1044,6 @@
                         <p class="text-xs text-gray-500 mt-1">**Logical Discussion:** The high correlation of media tone with external geopolitical interests proves the narrative was shaped to shield foreign actors and simplify the tragedy into a 'food mutiny'. Media became a weapon in the psychological war.</p>
                     </div>
                     
-                    <!-- Data Point 3: Weapon Anomalies -->
                     <div>
                         <div class="flex justify-between items-end mb-2">
                             <span class="text-sm font-bold text-gray-200 uppercase tracking-wider">WEAPON ANALYSIS: NON-STANDARD AMMUNITION USED</span>
@@ -938,13 +1052,12 @@
                         <div class="w-full bg-gray-700 rounded-full">
                             <div class="infographic-bar bg-red-800/70" style="width: 78%;" data-value="78"></div>
                         </div>
-                        <p class="text-xs text-gray-500 mt-1">**Logical Discussion:** The high percentage of non-standard ammunition suggests external supply chains. Standard BDR-issued weapons were supplemented with externally sourced firearms, pointing to pre-planned infiltration.</p>
+                        <p class="text-xs text-gray-500 mt-1">**Logical Discussion:** The high percentage of non-standard ammunition (e.g., slings with "Tiger" inscription) suggests external supply chains.</p>
                     </div>
                 </div>
             </div>
 
 
-            <!-- VISUAL REPRESENTATION 2: MEDIA TIMELINE ANOMALY (CRITICAL DATA POINT) -->
             <div class="mt-16 bg-neutral-900 p-8 rounded-xl shadow-xl border-t-2 border-red-600">
                 <h3 class="text-2xl font-oswald text-red-400 mb-4 flex items-center gap-3">
                     <i data-lucide="alert-triangle" class="w-6 h-6 text-yellow-500"></i> MEDIA TIMELINE ANOMALY: PREMATURE REPORTING
@@ -981,7 +1094,7 @@
             
             <div class="mt-12 text-center">
                 <p class="text-xl font-playfair italic text-gray-300 max-w-4xl mx-auto leading-relaxed border-t border-gray-700 pt-8">
-                    "The confluence of suspicious border activity (Geospatial Data), confirmed R&AW deployment (Network Analysis), and controlled media narrative proves the massacre was a calculated decapitation strike on Bangladesh's sovereignty, not a spontaneous food mutiny. Future security demands technological self-reliance."
+                    "The confluence of suspicious border activity (Geospatial Data), confirmed R&AW deployment (Network Analysis), and controlled media narrative proves the massacre was a calculated decapitation strike on Bangladesh's sovereignty, not a spontaneous food mutiny."
                 </p>
             </div>
 
@@ -989,7 +1102,6 @@
         </div>
     </section>
 
-    <!-- NEW SECTION: DIGITAL EVIDENCE (VIDEOS) -->
     <section id="digital-evidence" class="py-24 bg-black relative border-b border-red-900/30 overflow-hidden">
         <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_#200_0%,_black_70%)] opacity-30"></div>
         <div class="container mx-auto px-6 max-w-7xl relative z-10">
@@ -1000,7 +1112,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
-                <!-- VIDEO 1 -->
                 <div class="video-wrapper rounded-lg aspect-video group">
                     <div class="scanlines"></div>
                     <div class="rec-tag"><div class="rec-dot"></div> REC</div>
@@ -1008,7 +1119,6 @@
                     <iframe class="w-full h-full" src="https://www.youtube.com/embed/LzAV_PNzO-M" title="36 Hours of Betrayal" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
 
-                <!-- VIDEO 2 -->
                 <div class="video-wrapper rounded-lg aspect-video group">
                     <div class="scanlines"></div>
                     <div class="rec-tag"><div class="rec-dot"></div> REC</div>
@@ -1023,7 +1133,6 @@
         </div>
     </section>
 
-    <!-- SECTION 4: THE EXTERNAL HAND (RAW/BSF) -->
     <section id="evidence" class="py-24 bg-black relative overflow-hidden">
         <div class="absolute inset-0 bg-[linear-gradient(rgba(30,30,30,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(30,30,30,0.5)_1px,transparent_1px)] bg-[size:20px_20px] opacity-10"></div>
         
@@ -1035,7 +1144,6 @@
             </div>
 
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Intel Items -->
                 <div class="intel-card p-6 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 text-gray-800 opacity-20"><i data-lucide="radio-tower" class="w-24 h-24"></i></div>
                     <i data-lucide="radio" class="text-red-500 w-8 h-8 mb-4"></i>
@@ -1046,8 +1154,8 @@
                 <div class="intel-card p-6 relative overflow-hidden">
                     <div class="absolute -right-4 -top-4 text-gray-800 opacity-20"><i data-lucide="briefcase" class="w-24 h-24"></i></div>
                     <i data-lucide="user-x" class="text-red-500 w-8 h-8 mb-4"></i>
-                    <h3 class="text-white font-bold text-lg mb-2">RAW Infiltration</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Agents disguised as traders supplied non-standard ammo. Hindi voices overheard during killings.</p>
+                    <h3 class="text-white font-bold text-lg mb-2">Black Cat Infiltration</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">12-15 Black Cats entered through Benapole. Hindi voices overheard during killings.</p>
                 </div>
 
                 <div class="intel-card p-6 relative overflow-hidden">
@@ -1061,13 +1169,12 @@
                     <div class="absolute -right-4 -top-4 text-gray-800 opacity-20"><i data-lucide="file-x" class="w-24 h-24"></i></div>
                     <i data-lucide="eraser" class="text-red-500 w-8 h-8 mb-4"></i>
                     <h3 class="text-white font-bold text-lg mb-2">The Clean-Up</h3>
-                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Hasina's 2024 exile in Delhi confirms protection for her role in this joint operation.</p>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Home Minister's convoy was used for the killers' escape. Outbound flight deliberately delayed.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 5: INTERACTIVE TIMELINE -->
     <section id="timeline" class="py-24 bg-black relative">
         <div class="absolute top-0 right-0 w-1/2 h-full bg-red-900/5 pointer-events-none"></div>
         <div class="container mx-auto px-6 max-w-5xl">
@@ -1085,75 +1192,70 @@
 
             <div id="detailed-timeline" class="timeline-detailed relative border-l border-red-900/50 ml-6 md:ml-12 space-y-8 pr-4">
                 
-                <!-- FEB 24 -->
                 <div class="pl-8 relative">
-                     <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
-                     <h3 class="text-red-500 font-mono text-sm">FEB 24 - 10:00 AM</h3>
-                     <p class="text-white font-bold">The Setup</p>
-                     <p class="text-sm text-gray-400">PM Hasina visits Pilkhana. Intelligence ignores reports of missing SMGs. Agitators positioned.</p>
-                </div>
-
-                <!-- FEB 25 MORNING -->
-                <div class="pl-8 relative">
-                     <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
-                     <h3 class="text-red-500 font-mono text-sm">FEB 25 - 09:02 AM</h3>
-                     <p class="text-white font-bold">The First Shot</p>
-                     <p class="text-sm text-gray-400">Soldiers storm the Darbar Hall. DG Shakil Ahmed attempts to calm them but is insulted.</p>
+                    <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
+                    <h3 class="text-red-500 font-mono text-sm">FEB 24 - NIGHT</h3>
+                    <p class="text-white font-bold">The Setup: Infiltration</p>
+                    <p class="text-sm text-gray-400">Black Cat commandos enter through Benapole, lodge at Home Minister's guest house. Uniforms delivered by Taposh.</p>
                 </div>
 
                 <div class="pl-8 relative">
-                     <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
-                     <h3 class="text-red-500 font-mono text-sm">FEB 25 - 09:26 AM</h3>
-                     <p class="text-white font-bold">The Phone Call</p>
-                     <p class="text-sm text-gray-400">DG Shakil calls PM Hasina. She allegedly does not pick up initially. When connected, no order for rescue is given.</p>
+                    <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
+                    <h3 class="text-red-500 font-mono text-sm">FEB 25 - 09:02 AM</h3>
+                    <p class="text-white font-bold">The First Shot (Smokescreen)</p>
+                    <p class="text-sm text-gray-400">Ordinary soldiers storm the Darbar Hall (the mutiny smokescreen). DG Shakil Ahmed attempts to calm them.</p>
                 </div>
 
-                <!-- 10:30 BETRAYAL -->
+                <div class="pl-8 relative">
+                    <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
+                    <h3 class="text-red-500 font-mono text-sm">FEB 25 - 10:20 AM</h3>
+                    <p class="text-white font-bold">Weapon Supply</p>
+                    <p class="text-sm text-gray-400">Haji Selim's pickup delivers special rifles and slings with <span class="font-bold text-red-400">"Tiger" inscription</span> to the compound.</p>
+                </div>
+
                 <div class="pl-8 relative bg-red-950/20 py-4 border-l-4 border-red-600 rounded-r">
-                     <h3 class="text-red-500 font-mono text-lg font-bold">FEB 25 - 10:30 AM (CRITICAL)</h3>
-                     <p class="text-white font-bold text-xl">THE STAND DOWN ORDER</p>
-                     <p class="text-sm text-gray-300 mt-2">
-                        Brigade 46 and RAB were at the gates. Hasina orders Army Chief Moeen U Ahmed to halt operations for "political negotiations."
+                    <h3 class="text-red-500 font-mono text-lg font-bold">FEB 25 - 10:30 AM (CRITICAL)</h3>
+                    <p class="text-white font-bold text-xl">THE STAND DOWN ORDER</p>
+                    <p class="text-sm text-gray-300 mt-2">
+                        Brigade 46 and RAB were at the gates. PM Hasina orders Army Chief Moeen U Ahmed to halt operations for "political negotiations." This was reportedly due to threats of a <span class="font-bold text-red-400">Tri-Border Attack</span> from India.
                         <br><br>
                         <span class="text-red-400 italic">This 4-hour delay allowed the systematic execution of 57 officers in the Darbar Hall.</span>
-                     </p>
+                    </p>
                 </div>
 
                 <div class="pl-8 relative">
-                     <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
-                     <h3 class="text-red-500 font-mono text-sm">FEB 25 - 12:30 PM</h3>
-                     <p class="text-white font-bold">The White Flag Deception</p>
-                     <p class="text-sm text-gray-400">Taposh and Nanak arrive with white flags. Instead of rescuing officers, they negotiate amnesty for the killers.</p>
+                    <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
+                    <h3 class="text-red-500 font-mono text-sm">FEB 25 - 11:00 AM - 09:00 PM</h3>
+                    <p class="text-white font-bold">The Targeted Killings</p>
+                    <p class="text-sm text-gray-400">The Black Cats begin systematic, room-to-room elimination of senior officers. <span class="font-bold text-red-400">Hindi voices</span> heard.</p>
                 </div>
 
                 <div class="pl-8 relative">
-                     <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
-                     <h3 class="text-red-500 font-mono text-sm">FEB 25 - 03:00 PM</h3>
-                     <p class="text-white font-bold">The Residence Meeting</p>
-                     <p class="text-sm text-gray-400">Hasina meets 14 mutineer leaders at her Jamuna residence. Amnesty granted while officers are being buried in mass graves.</p>
+                    <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
+                    <h3 class="text-red-500 font-mono text-sm">FEB 25 - 09:00 PM</h3>
+                    <p class="text-white font-bold">The Getaway</p>
+                    <p class="text-sm text-gray-400">Home Minister Sahara Khatun enters with a convoy, electricity is cut, and the killers escape in a Prime Minister's special ambulance.</p>
                 </div>
 
-                 <div class="pl-8 relative">
-                     <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
-                     <h3 class="text-red-500 font-mono text-sm">FEB 26 - MORNING</h3>
-                     <p class="text-white font-bold">Discovery</p>
-                     <p class="text-sm text-gray-400">Tanks finally enter. Mass graves found. Bodies mutilated. 57 Officers confirmed dead.</p>
+                   <div class="pl-8 relative">
+                    <span class="absolute -left-[5px] top-2 w-2 h-2 bg-gray-600 rounded-full"></span>
+                    <h3 class="text-red-500 font-mono text-sm">FEB 26 - MORNING</h3>
+                    <p class="text-white font-bold">Discovery</p>
+                    <p class="text-sm text-gray-400">Tanks finally enter. Mass graves found. 57 Officers confirmed dead. The truth is systematically suppressed for 16 years.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- SECTION 6: BRIEF SUMMARY TREE -->
     <section id="archive-tree" class="py-24 bg-[#0a0a0a] border-t border-gray-900 relative">
         <div class="container mx-auto px-6 max-w-4xl">
             <div class="text-center mb-12">
-                 <i data-lucide="folder-open" class="w-12 h-12 text-red-600 mx-auto mb-4"></i>
-                 <h2 class="text-3xl font-cinzel text-white">CLASSIFIED ARCHIVES: FULL CONTEXT</h2>
-                 <p class="text-xs text-gray-500 mt-2 font-mono">CLICK NODES TO EXPAND DATABASE</p>
+                   <i data-lucide="folder-open" class="w-12 h-12 text-red-600 mx-auto mb-4"></i>
+                   <h2 class="text-3xl font-cinzel text-white">CLASSIFIED ARCHIVES: FULL CONTEXT</h2>
+                   <p class="text-xs text-gray-500 mt-2 font-mono">CLICK NODES TO EXPAND DATABASE</p>
             </div>
 
             <div class="space-y-4 font-mono text-sm">
-                <!-- Root Node -->
                 <div class="border border-gray-800 bg-black/50 p-4 rounded">
                     <details class="group">
                         <summary class="flex items-center gap-3 cursor-pointer list-none text-red-500 font-bold text-lg">
@@ -1162,7 +1264,6 @@
                         </summary>
                         <div class="pl-8 pt-4 space-y-4 border-l border-red-900/30 ml-2 mt-2">
                             
-                            <!-- Branch 1 -->
                             <details class="group">
                                 <summary class="flex items-center gap-2 cursor-pointer list-none text-gray-300 hover:text-white">
                                     <i data-lucide="minus" class="w-4 h-4 text-gray-600"></i>
@@ -1174,7 +1275,6 @@
                                 </div>
                             </details>
 
-                            <!-- Branch 2 -->
                             <details class="group">
                                 <summary class="flex items-center gap-2 cursor-pointer list-none text-gray-300 hover:text-white">
                                     <i data-lucide="minus" class="w-4 h-4 text-gray-600"></i>
@@ -1183,12 +1283,10 @@
                                 <div class="pl-8 pt-2 text-gray-500 space-y-2">
                                     <p><strong class="text-red-900">►</strong> <span class="text-gray-400">The Pact:</span> AL leaders (Taposh/Nanak) radicalize soldiers at mosque meetings.</p>
                                     <p><strong class="text-red-900">►</strong> <span class="text-gray-400">False Flag:</span> BSF radio messages trap soldiers into believing Army is attacking.</p>
-                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Infiltration:</span> 50-100 RAW agents enter Dhaka as traders with kill lists.
-                                    </p>
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Infiltration:</span> 12-15 RAW agents (Black Cats) enter Dhaka as traders with kill lists.</p>
                                 </div>
                             </details>
                             
-                            <!-- Branch 3 -->
                             <details class="group">
                                 <summary class="flex items-center gap-2 cursor-pointer list-none text-gray-300 hover:text-white">
                                     <i data-lucide="minus" class="w-4 h-4 text-gray-600"></i>
@@ -1197,19 +1295,18 @@
                                 <div class="pl-8 pt-2 text-gray-500 space-y-2">
                                     <p><strong class="text-red-900">►</strong> <span class="text-gray-400">09:00 AM:</span> Darbar Hall stormed. DG Shakil targeted first.</p>
                                     <p><strong class="text-red-900">►</strong> <span class="text-gray-400">10:30 AM (Critical):</span> Hasina orders Army to stand down, preventing rescue.</p>
-                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">The Deception:</span> White Flag team enters to negotiate killer's escape, not rescue.</p>
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">The Deception:</span> Home Minister's convoy used for killer's escape.</p>
                                 </div>
                             </details>
 
-                            <!-- Branch 4 -->
                             <details class="group">
                                 <summary class="flex items-center gap-2 cursor-pointer list-none text-gray-300 hover:text-white">
                                     <i data-lucide="minus" class="w-4 h-4 text-gray-600"></i>
                                     PHASE 4: THE FALLOUT
                                 </summary>
                                 <div class="pl-8 pt-2 text-gray-500 space-y-2">
-                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Sovereignty Lost:</span> 57 Officers dead. Army morale broken.</p>
-                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Cover-Up:</span> Witness silencing (Pesh Imam) & narrative control.</p>
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Sovereignty Lost:</span> 57 Officers dead. Army morale broken for 16 years.</p>
+                                    <p><strong class="text-red-900">►</strong> <span class="text-gray-400">Cover-Up:</span> Witness silencing (Major Suman) & media narrative control.</p>
                                 </div>
                             </details>
 
@@ -1220,7 +1317,6 @@
         </div>
     </section>
 
-    <!-- NEW SECTION: REBIRTH (JULY REVOLUTION) -->
     <section id="revolution" class="py-24 bg-gradient-to-t from-gray-900 to-black relative border-t border-gray-800">
         <div class="container mx-auto px-6 max-w-6xl">
             <div class="text-center mb-16">
@@ -1229,18 +1325,15 @@
                 <p class="text-gray-400 mt-4 max-w-2xl mx-auto">How the student-led uprising of 2024 dismantled the fascist regime and reopened the path to justice for Pilkhana.</p>
             </div>
 
-            <!-- Removed Map Area, centered content -->
             <div class="max-w-4xl mx-auto space-y-6">
                 
-                <!-- Card 1 -->
                 <div class="hope-card p-6 rounded-r-lg">
                     <h3 class="text-xl font-oswald text-white mb-2 flex items-center gap-2">
                         <i data-lucide="scale" class="text-green-500 w-5 h-5"></i> 2025 COMMISSION FORMED
                     </h3>
-                    <p class="text-sm text-gray-400">The interim government established the National Independent Commission to reinvestigate Pilkhana, freeing the narrative from 16 years of AL censorship.</p>
+                    <p class="text-sm text-gray-400">The interim government established the National Independent Commission of Inquiry to reinvestigate Pilkhana, freeing the narrative from 16 years of AL censorship.</p>
                 </div>
 
-                <!-- Card 2 -->
                 <div class="hope-card p-6 rounded-r-lg border-l-3 border-red-600" style="border-left-color: #f42a41;">
                     <h3 class="text-xl font-oswald text-white mb-2 flex items-center gap-2">
                         <i data-lucide="mic" class="text-red-500 w-5 h-5"></i> VOICES UNCHAINED
@@ -1248,16 +1341,14 @@
                     <p class="text-sm text-gray-400">Families of the 57 officers, silenced by threat of death/disappearance, are finally testifying against Hasina, Taposh, and their foreign handlers.</p>
                 </div>
 
-                <!-- Card 3 -->
                 <div class="hope-card p-6 rounded-r-lg border-l-3 border-gold" style="border-left-color: var(--gold);">
                     <h3 class="text-xl font-oswald text-white mb-2 flex items-center gap-2">
                         <i data-lucide="sunrise" class="text-yellow-500 w-5 h-5"></i> FROM "MUTINY" TO "MASSACRE"
                     </h3>
-                    <p class="text-sm text-gray-400">The revolution corrected history. It is no longer viewed as a soldier's grievance, but a state-sponsored slaughter of patriots.</p>
+                    <p class="text-sm text-gray-400">The revolution corrected history. It is no longer viewed as a soldier's grievance, but a foreign-backed assassination mission on a sovereign nation.</p>
                 </div>
             </div>
 
-            <!-- FINAL PUNCHLINE -->
             <div class="mt-24 text-center">
                 <h1 class="text-6xl md:text-8xl font-black font-cinzel bd-gradient-text tracking-tighter mb-6">BANGLADESH 2.0</h1>
                 <div class="w-24 h-1 bg-gradient-to-r from-green-600 to-red-600 mx-auto mb-8"></div>
@@ -1268,10 +1359,9 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="bg-black py-12 border-t border-gray-900 text-center relative overflow-hidden">
         <div class="relative z-10">
-            <h3 class="font-cinzel text-2xl text-white mb-2">JUSTICE FOR THE  57 MARTYR</h3>
+            <h3 class="font-cinzel text-2xl text-white mb-2">JUSTICE FOR THE  57 MARTYR</h3>
             <p class="text-xs text-red-600 tracking-[0.3em] uppercase mb-8">A Razin Saleh Collection</p>
             <div class="flex justify-center gap-4 text-gray-600">
                 <i data-lucide="flag" class="w-5 h-5 hover:text-red-600 transition"></i>
@@ -1281,7 +1371,6 @@
         <div class="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-green-800 via-red-600 to-green-800"></div>
     </footer>
 
-    <!-- SCRIPTS -->
     <script>
         // Enhanced Secret Files Preloader
         let progress = 0;
@@ -1380,6 +1469,16 @@
             gsap.from("#digital-evidence .video-wrapper", {
                 y: 50, opacity: 0, stagger: 0.2, duration: 1, ease: "power2.out",
                 scrollTrigger: { trigger: "#digital-evidence", start: "top 85%" }
+            });
+            
+            // Animate Decapitation Target
+            gsap.from(".decapitation-target", {
+                opacity: 0, y: 50, duration: 1, ease: "power2.out",
+                scrollTrigger: { trigger: ".decapitation-target", start: "top 85%" }
+            });
+            gsap.from(".target-node", {
+                opacity: 0, scale: 0.8, stagger: 0.2, duration: 0.6, delay: 0.5,
+                scrollTrigger: { trigger: ".target-group", start: "top 90%" }
             });
         }
 
