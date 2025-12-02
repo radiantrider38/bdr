@@ -253,33 +253,6 @@
         #prev-btn { left: -30px; }
         #next-btn { right: -30px; }
 
-        /* Data Terminal Styling - Red Theme */
-        .data-terminal {
-            background: rgba(10, 5, 5, 0.9);
-            border: 1px solid rgba(255, 0, 60, 0.2);
-            padding: 1rem;
-            font-family: 'Share Tech Mono', monospace;
-            position: relative;
-            overflow: hidden;
-            margin-top: 1rem;
-        }
-
-        .data-terminal::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
-            animation: terminal-scan 2s linear infinite;
-        }
-
-        @keyframes terminal-scan {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-
         /* Blood Red Glitch Text */
         .blood-glitch {
             position: relative;
@@ -363,6 +336,63 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* --- SIMPLE START BOX STYLING --- */
+        #simpleStartBox {
+            padding: 2.5rem 3rem;
+            max-width: 400px;
+            background: var(--dark-bg);
+            border: 2px solid var(--accent-red);
+            box-shadow: 0 0 15px rgba(255, 0, 60, 0.4), inset 0 0 10px rgba(255, 0, 60, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        #startButton {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--accent-red);
+            color: white;
+            border: 3px solid white;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(255, 0, 60, 0.8);
+            transition: transform 0.2s, box-shadow 0.5s;
+            animation: pulse 2s infinite ease-in-out;
+        }
+
+        #startButton:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(255, 0, 60, 1);
+        }
+
+        #startButton:active {
+            transform: scale(0.95);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 0, 60, 0.8); }
+            50% { box-shadow: 0 0 30px rgba(255, 0, 60, 1.2); }
+        }
+        
+        /* --- QUOTE PANEL STYLING --- */
+        .quote-panel {
+            width: 95%;
+            max-width: 1400px;
+            margin: 1rem auto;
+            border: 1px solid var(--blood-red);
+            background: rgba(10, 5, 5, 0.9);
+            box-shadow: inset 0 0 10px rgba(255, 0, 60, 0.2);
+            padding: 1.5rem 1rem;
+        }
+        
+        #quoteText {
+            min-height: 48px; /* Ensures stability when quote is short */
+            transition: opacity 0.5s ease-in-out;
+        }
 
         /* Responsive Design */
         @media (max-width: 768px) {
@@ -382,33 +412,34 @@
             .blood-frame {
                 inset: 10px;
             }
-        }
-
-        /* Blood Red Text Effect */
-        .blood-text {
-            color: var(--accent-red);
-            text-shadow: 
-                0 0 10px var(--accent-red),
-                0 0 20px rgba(255, 0, 60, 0.5),
-                0 0 40px rgba(138, 3, 3, 0.3);
-            animation: blood-pulse 2s ease-in-out infinite alternate;
-        }
-
-        @keyframes blood-pulse {
-            from { opacity: 0.8; }
-            to { opacity: 1; }
+            
+            #simpleStartBox {
+                max-width: 90%;
+            }
         }
     </style>
 </head>
 <body class="bg-black">
     <!-- Auto Loading Overlay -->
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="blood-loader"></div>
-        <div class="decrypt-animation mt-6">
-            <span id="decryptText" class="font-tech text-blood-red text-lg">INITIALIZING CLASSIFIED ARCHIVE</span>
-            <div class="text-sm text-gray-400 mt-2 font-tech">
-                BDR MASSACRE VISUALS • FEBRUARY 2009
+        <!-- Initial Loading State -->
+        <div id="initialLoader" class="flex flex-col items-center justify-center transition-opacity duration-500">
+            <div class="blood-loader"></div>
+            <div class="decrypt-animation mt-6">
+                <span id="decryptText" class="font-tech text-blood-red text-lg">INITIALIZING CLASSIFIED ARCHIVE</span>
+                <div class="text-sm text-gray-400 mt-2 font-tech">
+                    BDR MASSACRE VISUALS • FEBRUARY 2009
+                </div>
             </div>
+        </div>
+        
+        <!-- Simple Start Box (Hidden Initially) -->
+        <div id="simpleStartBox" class="flex flex-col items-center justify-center transition-opacity duration-500" style="display: none; opacity: 0;">
+             <h2 class="text-3xl font-orbitron text-accent-red mb-10 text-center tracking-wider">INITIATE ARCHIVE ACCESS</h2>
+            <button id="startButton">
+                <i data-lucide="play" class="w-12 h-12"></i>
+            </button>
+            <p class="font-tech text-gray-500 text-sm mt-8">Click to honor the memory of the defenders.</p>
         </div>
     </div>
     
@@ -418,15 +449,14 @@
     <div class="blood-overlay"></div>
     
     <!-- Audio Element -->
-    <audio id="backgroundAudio" loop preload="auto" muted>
-        <!-- Updated audio source -->
+    <audio id="backgroundAudio" loop preload="auto">
         <source src="https://github.com/radiantrider38/bdr/raw/refs/heads/images/HYDER%20HUSYN%20SONG%20%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%9A%E0%A6%BF%E0%A7%8E%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%95%E0%A6%B0%E0%A7%87%20%E0%A6%95%E0%A6%BE%E0%A6%81%E0%A6%A6%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%B9%E0%A6%BF%E0%A7%9F%E0%A6%BE%20%20BDR%20TRAGEDY%20-%20Hyder%20Husyn%20Music%20(youtube).mp3" type="audio/mp3">
     </audio>
 
     <!-- Header -->
     <header class="sticky top-0 z-50 py-4 blood-header">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col items-center">
+            <div class="flex flex-col items-center relative">
                 <div class="mb-3 px-4 py-1 border border-accent-red/30 bg-panel-bg/50 backdrop-blur-sm">
                     <span class="text-xs font-tech text-accent-red tracking-widest flex items-center gap-2">
                         <i data-lucide="shield-alert" class="w-3 h-3"></i>
@@ -451,7 +481,7 @@
     </header>
 
     <!-- Main Slideshow -->
-    <main class="flex-1 flex items-center justify-center py-8 relative z-10">
+    <main class="flex-1 flex flex-col items-center justify-center py-8 relative z-10">
         <div class="blood-slideshow">
             <div class="slide-container">
                 <!-- Slides will be dynamically inserted here -->
@@ -463,21 +493,13 @@
             <button id="next-btn" class="blood-nav-btn">
                 <i data-lucide="chevron-right" class="w-8 h-8"></i>
             </button>
-            
-            <!-- Data Terminal Display -->
-            <div class="data-terminal flex justify-between items-center">
-                <div class="font-tech">
-                    <div class="text-xs text-gray-500">ARCHIVE ID</div>
-                    <div class="text-sm text-accent-red" id="slideId">[CLASSIFIED]</div>
-                </div>
-                <div class="font-tech">
-                    <div class="text-xs text-gray-500">FILE STATUS</div>
-                    <div class="text-sm text-blood-red" id="slideCounter">[DECRYPTING]</div>
-                </div>
-                <div class="font-tech">
-                    <div class="text-xs text-gray-500">SECURITY LEVEL</div>
-                    <div class="text-sm text-accent-red">TOP SECRET</div>
-                </div>
+        </div>
+        
+        <!-- Emotional Quote Panel -->
+        <div class="quote-panel">
+            <div class="font-rajdhani text-center">
+                <p id="quoteText" class="text-xl md:text-2xl text-white tracking-wide italic text-accent-red">Initializing Archive...</p>
+                <div id="quoteSource" class="text-xs font-tech text-gray-500 mt-2"></div>
             </div>
         </div>
     </main>
@@ -506,135 +528,116 @@
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/20093153030127580_10.webp", 
                 id: "20093153030127580_10", 
-                caption: "[GATE 01 BREACH] - INITIAL INTRUSION VECTOR",
-                clearance: "LEVEL 9",
-                timestamp: "06:47:32"
+                quote: "In the shadow of betrayal, we remember the 57 officers who made the ultimate sacrifice for the sovereignty of Bangladesh.", 
+                source: "Memory of the Nation"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/4067562_5.jpg", 
                 id: "4067562_5", 
-                caption: "[COMMAND POST] - EARLY HOURS COMMUNICATIONS",
-                clearance: "LEVEL 8",
-                timestamp: "07:12:15"
+                quote: "Their last communication was a desperate plea for help. Their legacy is the defense of honor.", 
+                source: "A Soldier's Last Stand"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Bangladesh-mutiny-Mutinou-006.avif", 
                 id: "MUTINY-006", 
-                caption: "[ARMORY ANALYSIS] - NON-STANDARD AMMUNITION",
-                clearance: "LEVEL 10",
-                timestamp: "08:30:47"
+                quote: "The sight of the armory, once a symbol of protection, became a silent witness to the destruction within.", 
+                source: "The Scars of Pilkhana"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/BDR-2009-MUTINY-1-5da7692e8dde94f243ea6d95034ac982.webp", 
                 id: "BDR-MUTINY-1", 
-                caption: "[DARBAR SIEGE] - PRIMARY TARGET AREA",
-                clearance: "LEVEL 10",
-                timestamp: "09:45:22"
+                quote: "The Darbar Hall, stained forever, holds the memory of brave souls who faced darkness without flinching.", 
+                source: "The Empty Chairs"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Daily-sun-27-02-2019-1.jpg", 
                 id: "DAILY-SUN-27-02-2019-1", 
-                caption: "[MEDIA ANALYSIS] - CONTROLLED NARRATIVE OUTPUT",
-                clearance: "LEVEL 6",
-                timestamp: "12:00:00"
+                quote: "The media may fade, but the truth of the sacrifice burns brighter than any headline.", 
+                source: "Eternal Vigil"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Type_69-IIMk.2g.jpg", 
                 id: "TYPE_69-IIMK.2G", 
-                caption: "[ARMORED RESPONSE] - STAND DOWN ORDER CONFIRMED",
-                clearance: "LEVEL 9",
-                timestamp: "14:20:33"
+                quote: "The soldiers stood ready, their discipline a final tribute to their fallen comrades, even as the order to stand down came.", 
+                source: "Unwavering Loyalty"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/bdrmtunycmnty.jpg", 
                 id: "BDRMUTINYCMNTY", 
-                caption: "[DECEPTION PROTOCOL] - WAGE DISPUTE COVER",
-                clearance: "LEVEL 7",
-                timestamp: "15:45:18"
+                quote: "We mourn the officers who, even in their final moments, stood as the rightful defenders of our motherland.", 
+                source: "The Defended Homeland"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/bef6de20-d215-11ee-b83b-0f87a864f372.jpg.webp", 
                 id: "BEF6DE20-D215-11EE", 
-                caption: "[TARGET IDENTIFIED] - COMMANDER SHAKIL",
-                clearance: "LEVEL 10",
-                timestamp: "16:30:55"
+                quote: "For Commander Shakil and all who fell: their leadership was their promise, and their blood, the cost of duty.", 
+                source: "The Burden of Command"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/pilkhana.jpg", 
                 id: "PILKHANA", 
-                caption: "[HQ STATUS] - DAY 2 SURVEILLANCE",
-                clearance: "LEVEL 8",
-                timestamp: "18:15:42"
+                quote: "Pilkhana's walls bear silent witness to a tragedy. Their sacrifice ensures our security and dignity.", 
+                source: "The Silent Watch"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/rebel-bdr-men-main-gate-headquarters-pilkhana-440nw-3563934a.jpg", 
                 id: "REBEL-BDR-MEN", 
-                caption: "[OPERATION ANALYSIS] - COORDINATED ACTION",
-                clearance: "LEVEL 9",
-                timestamp: "20:05:29"
+                quote: "The men who protected this ground, their commitment was unbroken, even when faced with overwhelming force.", 
+                source: "The True Defenders"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/tm-news-748d10ed-5e76-4a5f-8aa1-c0c90b6970c1.jpg", 
                 id: "TM-NEWS-748D10ED", 
-                caption: "[INFORMATION CONTROL] - MEDIA BLACKOUT ACTIVE",
-                clearance: "LEVEL 7",
-                timestamp: "22:40:11"
+                quote: "Beyond the confusion of the news, lies the simple, painful truth of loss.", 
+                source: "Beyond the Headlines"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/2009226154159581734_3.webp", 
                 id: "2009226154159581734_3", 
-                caption: "[EVIDENCE RECOVERY] - PRIMARY SITE INVESTIGATION",
-                clearance: "LEVEL 10",
-                timestamp: "DAY 3 10:30:00"
+                quote: "The painstaking search for evidence is a quest for justice owed to the families of the fallen heroes.", 
+                source: "The Promise of Justice"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/4847e65bd1e483b19169d015e4b42d5f0bb30f35.webp", 
                 id: "4847E65BD1E483B1", 
-                caption: "[FORENSIC ANALYSIS] - DARBAR HALL EVIDENCE",
-                clearance: "LEVEL 10",
-                timestamp: "DAY 3 14:45:00"
+                quote: "Every trace, every shard, speaks of the violence endured by those who served with honor.", 
+                source: "Forensic Testimony"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/Firefighters-and-soldiers-001.avif", 
                 id: "FIREFIGHTERS-001", 
-                caption: "[RESCUE OPS] - JOINT FORCES DEPLOYMENT",
-                clearance: "LEVEL 8",
-                timestamp: "DAY 3 16:20:00"
+                quote: "In the face of tragedy, the nation stood together, bound by shared sorrow and the memory of the officers.", 
+                source: "United in Grief"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/bangladeshi-rescue-officials-stand-alongside-four-10-440nw-7926417d.jpg", 
                 id: "RESCUE-OFFICIALS", 
-                caption: "[RECOVERY PHASE] - POST-SIEGE OPERATIONS",
-                clearance: "LEVEL 7",
-                timestamp: "DAY 4 09:15:00"
+                quote: "The recovery phase: where hope gave way to the painful reality of the lives lost.", 
+                source: "The Cost of Peace"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/images%20(1).jfif", 
                 id: "IMAGES-1-JFIF", 
-                caption: "[FIELD ASSESSMENT] - PERIMETER SECURITY",
-                clearance: "LEVEL 6",
-                timestamp: "DAY 4 11:30:00"
+                quote: "The scars on the perimeter remain, a constant reminder of the day duty turned to disaster.", 
+                source: "A Permanent Reminder"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/images.jfif", 
                 id: "IMAGES-JFIF", 
-                caption: "[DAMAGE REPORT] - STRUCTURAL ANALYSIS",
-                clearance: "LEVEL 7",
-                timestamp: "DAY 4 13:45:00"
+                quote: "Structural damage can be repaired, but the damage to the heart of the nation remains profound.", 
+                source: "The Unseen Wounds"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/m_id_81095_bdr_mutiny.avif", 
                 id: "M_ID_81095", 
-                caption: "[DETAINEE PROCESSING] - SUSPECT INTERROGATION",
-                clearance: "LEVEL 9",
-                timestamp: "DAY 5 08:00:00"
+                quote: "Justice for the martyrs is slow, but their memory is our sacred vow.", 
+                source: "The Vow of the People"
             },
             { 
                 url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/ob_1740455732.jpg", 
                 id: "OB_1740455732", 
-                caption: "[AFTERMATH] - FAMILY NOTIFICATION PROCESS",
-                clearance: "LEVEL 5",
-                timestamp: "DAY 5 15:30:00"
+                quote: "We stand with the families, whose sorrow is the nation's sorrow. Their memory is eternal.", 
+                source: "Eternal Memory"
             }
         ];
 
@@ -643,19 +646,24 @@
         let autoSlideInterval;
         const autoAdvanceDelay = 5000;
         const slideContainer = document.querySelector('.slide-container');
-        const slideCounter = document.getElementById('slideCounter');
-        const slideId = document.getElementById('slideId');
         const loadingOverlay = document.getElementById('loadingOverlay');
         const decryptText = document.getElementById('decryptText');
+        
+        // Elements for interactive start screen and quote panel
+        const initialLoader = document.getElementById('initialLoader');
+        const simpleStartBox = document.getElementById('simpleStartBox');
+        const startButton = document.getElementById('startButton');
+        const quoteTextElement = document.getElementById('quoteText');
+        const quoteSourceElement = document.getElementById('quoteSource');
 
-        // AUTO START - No click required
+
+        // AUTO START - The loading animation runs first.
         function autoInitialize() {
             const decryptMessages = [
                 "ACCESSING SECURE SERVER...",
                 "DECRYPTING CLASSIFIED ARCHIVE...",
                 "LOADING VISUAL EVIDENCE...",
-                "INITIALIZING SLIDESHOW...",
-                "BDR MASSACRE VISUALS READY"
+                "INITIALIZATION COMPLETE. AWAITING USER COMMAND."
             ];
             
             let messageIndex = 0;
@@ -666,36 +674,49 @@
                 } else {
                     clearInterval(messageInterval);
                     
-                    // Fade out loading overlay
+                    // Show the simple start box after loading sequence
                     setTimeout(() => {
-                        loadingOverlay.style.opacity = '0';
+                        // 1. Hide the loader
+                        initialLoader.style.opacity = '0';
+                        
                         setTimeout(() => {
-                            loadingOverlay.style.display = 'none';
+                            initialLoader.style.display = 'none';
                             
-                            // Start audio automatically
-                            const audio = document.getElementById('backgroundAudio');
-                            
-                            // --- NEW MUSIC START LOGIC ---
-                            audio.currentTime = 14; // Start from 14 seconds
-                            audio.muted = false;
-                            audio.volume = 0.3;
-                            
-                            // Auto-play with error handling
-                            const playPromise = audio.play();
-                            if (playPromise !== undefined) {
-                                playPromise.catch(() => {
-                                    // This usually happens when the browser blocks auto-play
-                                    console.log("Audio autoplay blocked - will play on interaction");
-                                });
-                            }
-                            // --- END NEW MUSIC START LOGIC ---
-                            
-                            // Start slideshow automatically
-                            startAutoSlide();
-                        }, 500);
+                            // 2. Show the start box
+                            simpleStartBox.style.display = 'flex'; 
+                            setTimeout(() => {
+                                simpleStartBox.style.opacity = '1';
+                                lucide.createIcons();
+                            }, 50);
+
+                        }, 500); // Wait for opacity transition
                     }, 1000);
                 }
             }, 600);
+        }
+
+        // Function triggered by the START button click
+        function startArchive() {
+            const audio = document.getElementById('backgroundAudio');
+            
+            // Set audio properties and play (relying on user click gesture)
+            audio.currentTime = 14; 
+            audio.muted = false; 
+            audio.volume = 0.3;
+            
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch((e) => {
+                    console.error("Unmuted audio start failed:", e);
+                });
+            }
+
+            // Fade out the entire overlay and start the slideshow
+            loadingOverlay.style.opacity = '0';
+            setTimeout(() => {
+                loadingOverlay.style.display = 'none';
+                startAutoSlide(); // Start the slideshow
+            }, 500);
         }
 
         // Create slides
@@ -712,7 +733,7 @@
                 const img = document.createElement('img');
                 img.className = 'slide-image';
                 img.src = file.url;
-                img.alt = file.caption;
+                img.alt = file.quote;
                 img.loading = 'lazy';
                 
                 frameDiv.appendChild(img);
@@ -722,7 +743,7 @@
             
             // Initialize first slide
             slideContainer.children[0].classList.add('active');
-            updateTerminal();
+            updateQuotePanel();
         }
 
         // Slide transition
@@ -736,7 +757,7 @@
             newSlide.classList.add('active');
             
             currentSlide = newIndex;
-            updateTerminal();
+            updateQuotePanel();
         }
 
         function nextSlide() {
@@ -758,45 +779,36 @@
             if (autoSlideInterval) clearInterval(autoSlideInterval);
         }
 
-        // Update terminal display
-        function updateTerminal() {
+        // Update quote panel display
+        function updateQuotePanel() {
             const file = massacreImages[currentSlide];
-            slideId.textContent = `[${file.id}]`;
-            slideCounter.innerHTML = `
-                <span class="text-accent-red">FILE ${currentSlide + 1}/${massacreImages.length}</span>
-                <span class="text-gray-500 ml-2">// LEVEL: ${file.clearance}</span>
-            `;
             
-            // Update caption in data terminal
-            const terminalContainer = document.querySelector('.data-terminal');
-            const existingCaption = terminalContainer.querySelector('.caption');
-            
-            if (existingCaption) {
-                existingCaption.innerHTML = `
-                    <span class="text-accent-red">${file.caption}</span>
-                    <span class="text-gray-600 ml-2">// ${file.timestamp}</span>
-                `;
-            } else {
-                const captionDiv = document.createElement('div');
-                captionDiv.className = 'caption font-tech text-sm text-gray-400 mt-2 flex-1 text-center';
-                captionDiv.innerHTML = `
-                    <span class="text-accent-red">${file.caption}</span>
-                    <span class="text-gray-600 ml-2">// ${file.timestamp}</span>
-                `;
-                
-                const counterDiv = terminalContainer.querySelector('#slideCounter').parentElement;
-                terminalContainer.insertBefore(captionDiv, counterDiv.nextSibling);
-            }
-        }
+            // Fade out text first
+            quoteTextElement.style.opacity = '0';
+            quoteSourceElement.style.opacity = '0';
 
+            setTimeout(() => {
+                // Update content
+                quoteTextElement.textContent = `"${file.quote}"`;
+                quoteSourceElement.textContent = `— ${file.source}`;
+                
+                // Fade in text
+                quoteTextElement.style.opacity = '1';
+                quoteSourceElement.style.opacity = '1';
+            }, 300); // Match this delay to the CSS transition time for a smooth fade
+        }
+        
         // Initialize everything
         window.onload = function() {
             lucide.createIcons();
             renderSlides();
             
-            // Start automatically without click
+            // Start loading sequence
             setTimeout(autoInitialize, 100);
             
+            // Attach Start Button Listener
+            startButton.addEventListener('click', startArchive);
+
             // Event Listeners for manual control
             document.getElementById('next-btn').addEventListener('click', () => {
                 nextSlide();
@@ -854,14 +866,6 @@
                     startAutoSlide();
                 }
             }
-            
-            // Auto-start audio on first click if blocked
-            document.addEventListener('click', () => {
-                const audio = document.getElementById('backgroundAudio');
-                if (audio.paused) {
-                    audio.play().catch(e => console.log("Audio play requires user interaction"));
-                }
-            }, { once: true });
         };
     </script>
 </body>
