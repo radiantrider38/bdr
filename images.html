@@ -3,409 +3,750 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BDR MASSACRE VISUALS</title>
+    <title>// BDR MASSACRE VISUALS - CLASSIFIED ARCHIVE //</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Oswald:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         :root {
             --blood-red: #8a0303;
-            --black: #050505;
-            --dark-gray: #111;
-            --accent-yellow: #f59e0b;
+            --dark-red: #5a0000;
+            --accent-red: #ff003c;
+            --black: #0a0a0a;
+            --dark-bg: #0f0a0a;
+            --panel-bg: #1a0f0f;
+            --scan-line: rgba(255, 0, 60, 0.1);
         }
 
         body {
             background-color: var(--black);
             color: #e5e5e5;
-            font-family: 'Oswald', sans-serif;
+            font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
         }
 
-        .font-cinzel { font-family: 'Cinzel', serif; }
-        .font-mono { font-family: 'Share Tech Mono', monospace; }
+        .font-orbitron { font-family: 'Orbitron', sans-serif; }
+        .font-tech { font-family: 'Share Tech Mono', monospace; }
+        .font-rajdhani { font-family: 'Rajdhani', sans-serif; }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: var(--blood-red); }
-
-        /* Background Grid Pattern */
-        .grid-bg {
+        /* Red Scan Lines */
+        .scanlines {
             position: fixed;
             inset: 0;
-            background-image: linear-gradient(to right, rgba(50, 0, 0, 0.1) 1px, transparent 1px),
-                              linear-gradient(to bottom, rgba(50, 0, 0, 0.1) 1px, transparent 1px);
-            background-size: 30px 30px;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                var(--scan-line) 51%
+            );
+            background-size: 100% 4px;
             pointer-events: none;
-            z-index: 0;
-            opacity: 0.15;
+            z-index: 9998;
+            animation: scan 8s linear infinite;
         }
 
-        /* Header Styling */
-        .header-bg {
-            background: linear-gradient(90deg, var(--dark-gray) 0%, var(--black) 50%, var(--dark-gray) 100%);
-            border-bottom: 3px solid var(--blood-red);
-            box-shadow: 0 5px 20px rgba(138, 3, 3, 0.6);
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(4px); }
         }
 
-        /* Slideshow Styles */
-        .slideshow-container {
-            flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Digital Noise Overlay */
+        .noise {
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9997;
+            opacity: 0.03;
+        }
+
+        /* Blood Splatter Effect */
+        .blood-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9996;
+            opacity: 0.02;
+            background-image: 
+                radial-gradient(circle at 20% 30%, var(--blood-red) 1px, transparent 2px),
+                radial-gradient(circle at 80% 70%, var(--blood-red) 1px, transparent 2px),
+                radial-gradient(circle at 40% 60%, var(--accent-red) 1px, transparent 2px);
+            background-size: 200px 200px, 300px 300px, 250px 250px;
+        }
+
+        /* Main Container with Red Glow */
+        .blood-container {
             position: relative;
-            z-index: 10;
-            padding: 20px 0;
+            background: linear-gradient(145deg, #0a0a0a 0%, #150a0a 100%);
+            border: 1px solid rgba(138, 3, 3, 0.3);
+            box-shadow: 
+                0 0 40px rgba(138, 3, 3, 0.2),
+                inset 0 0 20px rgba(138, 3, 3, 0.05);
         }
 
-        .slide-wrapper {
+        /* Header with Blood Theme */
+        .blood-header {
+            background: linear-gradient(180deg, rgba(15, 5, 5, 0.95) 0%, rgba(10, 2, 2, 0.9) 100%);
+            border-bottom: 1px solid rgba(138, 3, 3, 0.5);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             position: relative;
-            width: 95%; /* Increased width for better mobile view */
-            max-width: 1200px;
             overflow: hidden;
-            border: 4px solid var(--blood-red);
-            box-shadow: 0 0 30px rgba(138, 3, 3, 0.8);
-            background: rgba(10, 0, 0, 0.7);
-        }
-        
-        /* Slideshow Film Strip */
-        .film-strip {
-            position: relative;
-            width: 100%;
-            height: 0;
-            padding-top: 56.25%; /* Container for 16:9 aspect ratio */
         }
 
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-            opacity: 0;
-            transform: scale(1.05) translateY(10px); /* Base state for zoom/slide transition */
-        }
-        
-        .slide.active {
-            opacity: 1;
-            transform: scale(1.0) translateY(0);
-            z-index: 2;
-        }
-
-        /* --- Custom Transition Classes defined statically --- */
-        .slide.transition-out-fade {
-            opacity: 0;
-        }
-        .slide.transition-in-fade {
-            opacity: 1;
-        }
-        
-        /* Sliding Transitions */
-        .slide.transition-out-slide {
-            transform: translateX(-100%) scale(0.9);
-            opacity: 0;
-        }
-        .slide.transition-in-slide {
-            transform: translateX(0) scale(1.0);
-            opacity: 1;
-        }
-        .slide.transition-out-slide-reverse {
-            transform: translateX(100%) scale(0.9);
-            opacity: 0;
-        }
-        /* Zoom Transitions */
-        .slide.transition-out-zoom {
-            transform: scale(1.2);
-            opacity: 0;
-        }
-        .slide.transition-in-zoom {
-            transform: scale(1.0);
-            opacity: 1;
-        }
-        /* --- End Custom Transition Classes --- */
-
-
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain; 
-            filter: grayscale(20%) contrast(1.1);
-            transition: filter 0.5s ease;
-        }
-        
-        /* New Confidential Frame Styling */
-        .confidential-frame {
-            position: relative;
-            padding: 15px; /* Creates the border space */
-            border: 1px solid #333;
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
-            transition: all 0.3s ease;
-        }
-        .confidential-frame::before, .confidential-frame::after {
+        .blood-header::before {
             content: '';
             position: absolute;
-            width: 15px;
-            height: 15px;
-            border: 2px solid var(--accent-yellow);
-            transition: all 0.3s ease;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+            animation: header-scan 3s linear infinite;
         }
-        .confidential-frame::before {
+
+        @keyframes header-scan {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* New Blood Red Slideshow */
+        .blood-slideshow {
+            position: relative;
+            width: 95%;
+            max-width: 1400px;
+            margin: 0 auto;
+            perspective: 1000px;
+        }
+
+        .slide-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .blood-slide {
+            position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transform: translateZ(-100px) rotateX(5deg);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .blood-slide.active {
+            opacity: 1;
+            transform: translateZ(0) rotateX(0);
+            z-index: 10;
+        }
+
+        /* Blood Red Frame with Animated Border */
+        .blood-frame {
+            position: absolute;
+            inset: 20px;
+            border: 2px solid transparent;
+            background: 
+                linear-gradient(var(--panel-bg), var(--panel-bg)) padding-box,
+                linear-gradient(45deg, transparent 30%, var(--accent-red), transparent 70%) border-box;
+            animation: border-glow 3s linear infinite;
+        }
+
+        @keyframes border-glow {
+            0%, 100% { border-color: rgba(138, 3, 3, 0.3); }
+            50% { border-color: rgba(255, 0, 60, 0.3); }
+        }
+
+        .blood-frame::before,
+        .blood-frame::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--accent-red);
+            animation: corner-pulse 2s ease-in-out infinite alternate;
+        }
+
+        .blood-frame::before {
+            top: -2px;
+            left: -2px;
             border-right: none;
             border-bottom: none;
         }
-        .confidential-frame::after {
-            bottom: 0;
-            right: 0;
+
+        .blood-frame::after {
+            bottom: -2px;
+            right: -2px;
             border-left: none;
             border-top: none;
         }
-        .slide.active .confidential-frame::before, .slide.active .confidential-frame::after {
-            border-color: var(--blood-red);
+
+        @keyframes corner-pulse {
+            0% { opacity: 0.3; }
+            100% { opacity: 1; }
         }
 
+        .slide-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            filter: 
+                sepia(0.3) 
+                contrast(1.2) 
+                saturate(1.1)
+                drop-shadow(0 0 10px rgba(138, 3, 3, 0.3));
+            transition: filter 0.5s ease;
+        }
 
-        /* Navigation Buttons */
-        .nav-button {
+        .blood-slide.active .slide-image {
+            animation: image-flicker 0.3s ease-out;
+        }
+
+        @keyframes image-flicker {
+            0%, 100% { filter: sepia(0.3) contrast(1.2) saturate(1.1); }
+            50% { filter: sepia(0.4) contrast(1.5) saturate(1.3) brightness(1.1); }
+        }
+
+        /* Red Navigation Buttons */
+        .blood-nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            z-index: 20;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 0.5rem;
-            border-radius: 9999px;
+            z-index: 50;
+            background: rgba(26, 15, 15, 0.8);
+            border: 2px solid var(--accent-red);
+            color: var(--accent-red);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             cursor: pointer;
-            transition: background 0.3s, color 0.3s;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 0 10px rgba(138, 3, 3, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(5px);
+            box-shadow: 
+                0 0 20px rgba(255, 0, 60, 0.3),
+                inset 0 0 15px rgba(255, 0, 60, 0.1);
         }
-        .nav-button:hover {
-            background: var(--blood-red);
+
+        .blood-nav-btn:hover {
+            background: rgba(255, 0, 60, 0.2);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 
+                0 0 30px rgba(255, 0, 60, 0.5),
+                inset 0 0 20px rgba(255, 0, 60, 0.2);
         }
-        #prev-button { left: 1rem; }
-        #next-button { right: 1rem; }
-        /* Responsive button sizing */
+
+        .blood-nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        #prev-btn { left: -30px; }
+        #next-btn { right: -30px; }
+
+        /* Data Terminal Styling - Red Theme */
+        .data-terminal {
+            background: rgba(10, 5, 5, 0.9);
+            border: 1px solid rgba(255, 0, 60, 0.2);
+            padding: 1rem;
+            font-family: 'Share Tech Mono', monospace;
+            position: relative;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+
+        .data-terminal::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+            animation: terminal-scan 2s linear infinite;
+        }
+
+        @keyframes terminal-scan {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Blood Red Glitch Text */
+        .blood-glitch {
+            position: relative;
+            display: inline-block;
+            color: white;
+            text-shadow: 
+                0.05em 0 0 rgba(255, 0, 60, 0.75),
+                -0.025em -0.05em 0 rgba(138, 3, 3, 0.75),
+                0.025em 0.05em 0 rgba(255, 100, 100, 0.75);
+            animation: blood-glitch 500ms infinite;
+        }
+
+        .blood-glitch span {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .blood-glitch span:first-child {
+            animation: blood-glitch 650ms infinite;
+            clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
+            transform: translate(-0.04em, -0.03em);
+            opacity: 0.75;
+        }
+
+        .blood-glitch span:last-child {
+            animation: blood-glitch 375ms infinite;
+            clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+            transform: translate(0.04em, 0.03em);
+            opacity: 0.75;
+        }
+
+        @keyframes blood-glitch {
+            0% { text-shadow: 0.05em 0 0 rgba(255, 0, 60, 0.75); }
+            14% { text-shadow: 0.05em 0 0 rgba(255, 0, 60, 0.75); }
+            15% { text-shadow: -0.05em -0.025em 0 rgba(138, 3, 3, 0.75); }
+            49% { text-shadow: -0.05em -0.025em 0 rgba(138, 3, 3, 0.75); }
+            50% { text-shadow: 0.025em 0.05em 0 rgba(255, 100, 100, 0.75); }
+            99% { text-shadow: 0.025em 0.05em 0 rgba(255, 100, 100, 0.75); }
+            100% { text-shadow: -0.025em 0 0 rgba(255, 0, 60, 0.75); }
+        }
+
+        /* Auto Loading Overlay */
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(45deg, #0a0a0a 0%, #150a0a 100%);
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: opacity 0.5s ease;
+        }
+
+        .blood-loader {
+            width: 80px;
+            height: 80px;
+            border: 3px solid transparent;
+            border-top: 3px solid var(--accent-red);
+            border-radius: 50%;
+            animation: blood-spin 1s linear infinite;
+            position: relative;
+        }
+
+        .blood-loader::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 3px solid transparent;
+            border-top: 3px solid var(--blood-red);
+            border-radius: 50%;
+            animation: blood-spin 2s linear infinite reverse;
+        }
+
+        @keyframes blood-spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-button {
-                padding: 0.75rem;
+            .blood-slideshow {
+                width: 98%;
+            }
+            
+            .blood-nav-btn {
+                width: 50px;
+                height: 50px;
+                transform: translateY(-50%) scale(0.8);
+            }
+            
+            #prev-btn { left: -25px; }
+            #next-btn { right: -25px; }
+            
+            .blood-frame {
+                inset: 10px;
             }
         }
 
-        /* Glitch effect for the header text */
-        .glitch-text {
-            position: relative;
-            color: #fff;
-            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 0 0 5px rgba(0, 0, 255, 0.5);
+        /* Blood Red Text Effect */
+        .blood-text {
+            color: var(--accent-red);
+            text-shadow: 
+                0 0 10px var(--accent-red),
+                0 0 20px rgba(255, 0, 60, 0.5),
+                0 0 40px rgba(138, 3, 3, 0.3);
+            animation: blood-pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes blood-pulse {
+            from { opacity: 0.8; }
+            to { opacity: 1; }
         }
     </style>
 </head>
-<body class="bg-black text-gray-300">
-    <!-- Unmute button overlay -->
-    <div id="unmute-overlay" class="fixed inset-0 bg-black/90 z-[100] flex flex-col items-center justify-center cursor-pointer opacity-0 transition-opacity duration-1000">
-        <i data-lucide="volume-2" class="w-16 h-16 text-red-600 animate-pulse mb-6"></i>
-        <h2 class="text-2xl font-cinzel text-red-500 tracking-widest">START OPERATION</h2>
-        <p class="text-sm font-mono text-gray-400 mt-2">Click anywhere to decrypt audio and begin visual stream.</p>
+<body class="bg-black">
+    <!-- Auto Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="blood-loader"></div>
+        <div class="decrypt-animation mt-6">
+            <span id="decryptText" class="font-tech text-blood-red text-lg">INITIALIZING CLASSIFIED ARCHIVE</span>
+            <div class="text-sm text-gray-400 mt-2 font-tech">
+                BDR MASSACRE VISUALS • FEBRUARY 2009
+            </div>
+        </div>
     </div>
     
-    <audio id="background-audio" loop autoplay preload="auto" muted>
+    <!-- Visual Effects -->
+    <div class="scanlines"></div>
+    <div class="noise"></div>
+    <div class="blood-overlay"></div>
+    
+    <!-- Audio Element -->
+    <audio id="backgroundAudio" loop preload="auto" muted>
+        <!-- Updated audio source -->
         <source src="https://github.com/radiantrider38/bdr/raw/refs/heads/images/HYDER%20HUSYN%20SONG%20%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%9A%E0%A6%BF%E0%A7%8E%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%95%E0%A6%B0%E0%A7%87%20%E0%A6%95%E0%A6%BE%E0%A6%81%E0%A6%A6%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%B9%E0%A6%BF%E0%A7%9F%E0%A6%BE%20%20BDR%20TRAGEDY%20-%20Hyder%20Husyn%20Music%20(youtube).mp3" type="audio/mp3">
-        Your browser does support the audio element.
     </audio>
 
-    <div class="grid-bg"></div>
-
-    <header class="sticky top-0 z-50 py-6 header-bg">
-        <div class="container mx-auto px-4 text-center">
-            <div class="inline-block px-3 py-1 mb-2 border-r-4 border-l-4 border-red-700 bg-red-950/20 shadow-lg shadow-red-900/50">
-                <span class="text-xs font-mono text-red-500 tracking-[0.3em] flex items-center justify-center gap-2">
-                    <i data-lucide="scan" class="w-4 h-4"></i> DEEP SCAN ARCHIVE ONLINE
-                </span>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 py-4 blood-header">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col items-center">
+                <div class="mb-3 px-4 py-1 border border-accent-red/30 bg-panel-bg/50 backdrop-blur-sm">
+                    <span class="text-xs font-tech text-accent-red tracking-widest flex items-center gap-2">
+                        <i data-lucide="shield-alert" class="w-3 h-3"></i>
+                        [SECURITY CLEARANCE: MAXIMUM] 
+                        <i data-lucide="alert-triangle" class="w-3 h-3 text-accent-red"></i>
+                    </span>
+                </div>
+                
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-orbitron font-black text-center mb-2 blood-glitch">
+                    BDR MASSACRE VISUALS
+                    <span>BDR MASSACRE VISUALS</span>
+                    <span>BDR MASSACRE VISUALS</span>
+                </h1>
+                
+                <div class="text-sm font-rajdhani uppercase tracking-widest text-gray-400 flex items-center gap-2">
+                    <span class="h-2 w-2 rounded-full bg-accent-red animate-pulse"></span>
+                    CLASSIFIED VISUAL ARCHIVE - 25-27 FEB 2009
+                    <span class="h-2 w-2 rounded-full bg-accent-red animate-pulse"></span>
+                </div>
             </div>
-            <h1 class="text-4xl md:text-6xl font-cinzel font-black text-white tracking-tighter leading-none glitch-text">
-                <span data-text="BDR MASSACRE VISUALS">BDR MASSACRE VISUALS</span>
-            </h1>
-            <p class="text-sm font-oswald uppercase tracking-widest text-gray-400 mt-2">VISUAL EVIDENCE OF SOVEREIGNTY BETRAYAL</p>
         </div>
     </header>
 
-    <main class="slideshow-container">
-        <div class="slide-wrapper">
-            <div class="film-strip" id="film-strip">
-                <!-- Slides will be inserted here by JavaScript -->
+    <!-- Main Slideshow -->
+    <main class="flex-1 flex items-center justify-center py-8 relative z-10">
+        <div class="blood-slideshow">
+            <div class="slide-container">
+                <!-- Slides will be dynamically inserted here -->
             </div>
             
-            <button id="prev-button" class="nav-button p-4">
-                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            <button id="prev-btn" class="blood-nav-btn">
+                <i data-lucide="chevron-left" class="w-8 h-8"></i>
             </button>
-            <button id="next-button" class="nav-button p-4">
-                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            <button id="next-btn" class="blood-nav-btn">
+                <i data-lucide="chevron-right" class="w-8 h-8"></i>
             </button>
             
-            <div class="absolute bottom-0 left-0 right-0 py-2 px-4 bg-black/80 font-mono text-xs text-red-400 border-t border-red-900 flex justify-between">
-                <span id="slide-id">ID: 20093153030127580_10</span>
-                <span id="slide-counter">FILE 1/19</span>
+            <!-- Data Terminal Display -->
+            <div class="data-terminal flex justify-between items-center">
+                <div class="font-tech">
+                    <div class="text-xs text-gray-500">ARCHIVE ID</div>
+                    <div class="text-sm text-accent-red" id="slideId">[CLASSIFIED]</div>
+                </div>
+                <div class="font-tech">
+                    <div class="text-xs text-gray-500">FILE STATUS</div>
+                    <div class="text-sm text-blood-red" id="slideCounter">[DECRYPTING]</div>
+                </div>
+                <div class="font-tech">
+                    <div class="text-xs text-gray-500">SECURITY LEVEL</div>
+                    <div class="text-sm text-accent-red">TOP SECRET</div>
+                </div>
             </div>
         </div>
     </main>
 
-    <footer class="bg-black py-6 border-t border-red-900/50 text-center relative z-10">
-        <div class="relative z-10">
-            <p class="text-xs font-mono text-red-600 tracking-[0.2em] uppercase mb-1">END OF TRANSMISSION // FILE 19/19 CLOSED</p>
-            <p class="text-xs text-gray-600">UNOFFICIAL ARCHIVE - DATA INTEGRITY CHECK: OK</p>
+    <!-- Footer -->
+    <footer class="py-6 border-t border-blood-red/20 relative z-10">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="mb-3">
+                    <div class="inline-block px-4 py-2 bg-panel-bg/50 border border-accent-red/20">
+                        <span class="text-xs font-tech text-accent-red tracking-widest">
+                            <i data-lucide="eye-off" class="w-3 h-3 inline mr-2"></i>
+                            UNAUTHORIZED ACCESS LOGGED AND TRACED
+                        </span>
+                    </div>
+                </div>
+                <p class="text-xs font-tech text-gray-600 tracking-wider">
+                    VISUAL EVIDENCE ARCHIVE • FEB 2009 • ACCESS: [REDACTED]
+                </p>
+            </div>
         </div>
     </footer>
 
     <script>
-        const imageFiles = [
-            // Original Images
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/20093153030127580_10.webp", id: "20093153030127580_10", caption: "MAIN GATE: INITIAL INTRUSION" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/4067562_5.jpg", id: "4067562_5", caption: "MUTINEER COMMAND: EARLY HOURS" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Bangladesh-mutiny-Mutinou-006.avif", id: "MUTINY-006", caption: "WEAPONS CACHE: NON-STANDARD AMMO" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/BDR-2009-MUTINY-1-5da7692e8dde94f243ea6d95034ac982.webp", id: "BDR-MUTINY-1", caption: "DARBAR HALL SIEGE: DAY ONE" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Daily-sun-27-02-2019-1.jpg", id: "DAILY-SUN-27-02-2019-1", caption: "AFTERMATH: NEWSPAPER FRONT PAGE" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Type_69-IIMk.2g.jpg", id: "TYPE_69-IIMK.2G", caption: "ARMORED SUPPORT: ARMY STAND DOWN" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/bdrmtunycmnty.jpg", id: "BDRMUTINYCMNTY", caption: "THE SMOKESCREEN: WAGE DISPUTE" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/bef6de20-d215-11ee-b83b-0f87a864f372.jpg.webp", id: "BEF6DE20-D215-11EE", caption: "TARGETED OFFICER: COMMANDER SHAKIL" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/pilkhana.jpg", id: "PILKHANA", caption: "BDR HEADQUARTERS: DAY 2" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/rebel-bdr-men-main-gate-headquarters-pilkhana-440nw-3563934a.jpg", id: "REBEL-BDR-MEN", caption: "THE RISING: FAKE REVOLT" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/tm-news-748d10ed-5e76-4a5f-8aa1-c0c90b6970c1.jpg", id: "TM-NEWS-748D10ED", caption: "MEDIA BLACKOUT: CONTROLLED NARRATIVE" },
-            
-            // New Images from bdr img.txt
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/2009226154159581734_3.webp", id: "2009226154159581734_3", caption: "MASS GRAVE DISCOVERY: OFFICER REMAINS" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/4847e65bd1e483b19169d015e4b42d5f0bb30f35.webp", id: "4847E65BD1E483B1", caption: "EVIDENCE RECOVERY: DARBAR HALL" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/Firefighters-and-soldiers-001.avif", id: "FIREFIGHTERS-001", caption: "RESCUE AND CONTAINMENT OPERATIONS" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/bangladeshi-rescue-officials-stand-alongside-four-10-440nw-7926417d.jpg", id: "RESCUE-OFFICIALS", caption: "POST-SIEGE: SEARCH AND RECOVERY" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/images%20(1).jfif", id: "IMAGES-1-JFIF", caption: "BDR SOLDIERS IN THE FIELD" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/images.jfif", id: "IMAGES-JFIF", caption: "HEADQUARTERS DAMAGE ASSESSMENT" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/m_id_81095_bdr_mutiny.avif", id: "M_ID_81095", caption: "MUTINY LEADER: CAPTURED" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/ob_1740455732.jpg", id: "OB_1740455732", caption: "MOURNING RITUALS: ARMY FAMILY" }
+        const massacreImages = [
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/20093153030127580_10.webp", 
+                id: "20093153030127580_10", 
+                caption: "[GATE 01 BREACH] - INITIAL INTRUSION VECTOR",
+                clearance: "LEVEL 9",
+                timestamp: "06:47:32"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/4067562_5.jpg", 
+                id: "4067562_5", 
+                caption: "[COMMAND POST] - EARLY HOURS COMMUNICATIONS",
+                clearance: "LEVEL 8",
+                timestamp: "07:12:15"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Bangladesh-mutiny-Mutinou-006.avif", 
+                id: "MUTINY-006", 
+                caption: "[ARMORY ANALYSIS] - NON-STANDARD AMMUNITION",
+                clearance: "LEVEL 10",
+                timestamp: "08:30:47"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/BDR-2009-MUTINY-1-5da7692e8dde94f243ea6d95034ac982.webp", 
+                id: "BDR-MUTINY-1", 
+                caption: "[DARBAR SIEGE] - PRIMARY TARGET AREA",
+                clearance: "LEVEL 10",
+                timestamp: "09:45:22"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Daily-sun-27-02-2019-1.jpg", 
+                id: "DAILY-SUN-27-02-2019-1", 
+                caption: "[MEDIA ANALYSIS] - CONTROLLED NARRATIVE OUTPUT",
+                clearance: "LEVEL 6",
+                timestamp: "12:00:00"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Type_69-IIMk.2g.jpg", 
+                id: "TYPE_69-IIMK.2G", 
+                caption: "[ARMORED RESPONSE] - STAND DOWN ORDER CONFIRMED",
+                clearance: "LEVEL 9",
+                timestamp: "14:20:33"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/bdrmtunycmnty.jpg", 
+                id: "BDRMUTINYCMNTY", 
+                caption: "[DECEPTION PROTOCOL] - WAGE DISPUTE COVER",
+                clearance: "LEVEL 7",
+                timestamp: "15:45:18"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/bef6de20-d215-11ee-b83b-0f87a864f372.jpg.webp", 
+                id: "BEF6DE20-D215-11EE", 
+                caption: "[TARGET IDENTIFIED] - COMMANDER SHAKIL",
+                clearance: "LEVEL 10",
+                timestamp: "16:30:55"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/pilkhana.jpg", 
+                id: "PILKHANA", 
+                caption: "[HQ STATUS] - DAY 2 SURVEILLANCE",
+                clearance: "LEVEL 8",
+                timestamp: "18:15:42"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/rebel-bdr-men-main-gate-headquarters-pilkhana-440nw-3563934a.jpg", 
+                id: "REBEL-BDR-MEN", 
+                caption: "[OPERATION ANALYSIS] - COORDINATED ACTION",
+                clearance: "LEVEL 9",
+                timestamp: "20:05:29"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/tm-news-748d10ed-5e76-4a5f-8aa1-c0c90b6970c1.jpg", 
+                id: "TM-NEWS-748D10ED", 
+                caption: "[INFORMATION CONTROL] - MEDIA BLACKOUT ACTIVE",
+                clearance: "LEVEL 7",
+                timestamp: "22:40:11"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/2009226154159581734_3.webp", 
+                id: "2009226154159581734_3", 
+                caption: "[EVIDENCE RECOVERY] - PRIMARY SITE INVESTIGATION",
+                clearance: "LEVEL 10",
+                timestamp: "DAY 3 10:30:00"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/4847e65bd1e483b19169d015e4b42d5f0bb30f35.webp", 
+                id: "4847E65BD1E483B1", 
+                caption: "[FORENSIC ANALYSIS] - DARBAR HALL EVIDENCE",
+                clearance: "LEVEL 10",
+                timestamp: "DAY 3 14:45:00"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/Firefighters-and-soldiers-001.avif", 
+                id: "FIREFIGHTERS-001", 
+                caption: "[RESCUE OPS] - JOINT FORCES DEPLOYMENT",
+                clearance: "LEVEL 8",
+                timestamp: "DAY 3 16:20:00"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/bangladeshi-rescue-officials-stand-alongside-four-10-440nw-7926417d.jpg", 
+                id: "RESCUE-OFFICIALS", 
+                caption: "[RECOVERY PHASE] - POST-SIEGE OPERATIONS",
+                clearance: "LEVEL 7",
+                timestamp: "DAY 4 09:15:00"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/images%20(1).jfif", 
+                id: "IMAGES-1-JFIF", 
+                caption: "[FIELD ASSESSMENT] - PERIMETER SECURITY",
+                clearance: "LEVEL 6",
+                timestamp: "DAY 4 11:30:00"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/images.jfif", 
+                id: "IMAGES-JFIF", 
+                caption: "[DAMAGE REPORT] - STRUCTURAL ANALYSIS",
+                clearance: "LEVEL 7",
+                timestamp: "DAY 4 13:45:00"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/m_id_81095_bdr_mutiny.avif", 
+                id: "M_ID_81095", 
+                caption: "[DETAINEE PROCESSING] - SUSPECT INTERROGATION",
+                clearance: "LEVEL 9",
+                timestamp: "DAY 5 08:00:00"
+            },
+            { 
+                url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/ob_1740455732.jpg", 
+                id: "OB_1740455732", 
+                caption: "[AFTERMATH] - FAMILY NOTIFICATION PROCESS",
+                clearance: "LEVEL 5",
+                timestamp: "DAY 5 15:30:00"
+            }
         ];
 
+        // Initialize variables
         let currentSlide = 0;
         let autoSlideInterval;
-        const autoAdvanceDelay = 4000; // 4 seconds per slide
-        const filmStrip = document.getElementById('film-strip');
-        const slideCounter = document.getElementById('slide-counter');
-        const slideIdDisplay = document.getElementById('slide-id');
-        const unmuteOverlay = document.getElementById('unmute-overlay');
-        const totalSlides = imageFiles.length;
-        
-        const transitions = ['fade', 'slide', 'zoom'];
+        const autoAdvanceDelay = 5000;
+        const slideContainer = document.querySelector('.slide-container');
+        const slideCounter = document.getElementById('slideCounter');
+        const slideId = document.getElementById('slideId');
+        const loadingOverlay = document.getElementById('loadingOverlay');
+        const decryptText = document.getElementById('decryptText');
 
+        // AUTO START - No click required
+        function autoInitialize() {
+            const decryptMessages = [
+                "ACCESSING SECURE SERVER...",
+                "DECRYPTING CLASSIFIED ARCHIVE...",
+                "LOADING VISUAL EVIDENCE...",
+                "INITIALIZING SLIDESHOW...",
+                "BDR MASSACRE VISUALS READY"
+            ];
+            
+            let messageIndex = 0;
+            const messageInterval = setInterval(() => {
+                if (messageIndex < decryptMessages.length) {
+                    decryptText.textContent = decryptMessages[messageIndex];
+                    messageIndex++;
+                } else {
+                    clearInterval(messageInterval);
+                    
+                    // Fade out loading overlay
+                    setTimeout(() => {
+                        loadingOverlay.style.opacity = '0';
+                        setTimeout(() => {
+                            loadingOverlay.style.display = 'none';
+                            
+                            // Start audio automatically
+                            const audio = document.getElementById('backgroundAudio');
+                            
+                            // --- NEW MUSIC START LOGIC ---
+                            audio.currentTime = 14; // Start from 14 seconds
+                            audio.muted = false;
+                            audio.volume = 0.3;
+                            
+                            // Auto-play with error handling
+                            const playPromise = audio.play();
+                            if (playPromise !== undefined) {
+                                playPromise.catch(() => {
+                                    // This usually happens when the browser blocks auto-play
+                                    console.log("Audio autoplay blocked - will play on interaction");
+                                });
+                            }
+                            // --- END NEW MUSIC START LOGIC ---
+                            
+                            // Start slideshow automatically
+                            startAutoSlide();
+                        }, 500);
+                    }, 1000);
+                }
+            }, 600);
+        }
+
+        // Create slides
         function renderSlides() {
-            imageFiles.forEach((file, index) => {
+            massacreImages.forEach((file, index) => {
                 const slideDiv = document.createElement('div');
-                slideDiv.className = 'slide absolute top-0 left-0 w-full h-full';
+                slideDiv.className = 'blood-slide';
                 slideDiv.setAttribute('data-id', file.id);
                 slideDiv.setAttribute('data-index', index);
-
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'confidential-frame w-full h-full flex justify-center items-center';
-
+                
+                const frameDiv = document.createElement('div');
+                frameDiv.className = 'blood-frame';
+                
                 const img = document.createElement('img');
+                img.className = 'slide-image';
                 img.src = file.url;
                 img.alt = file.caption;
+                img.loading = 'lazy';
                 
-                imgContainer.appendChild(img);
-                slideDiv.appendChild(imgContainer);
-                filmStrip.appendChild(slideDiv);
+                frameDiv.appendChild(img);
+                slideDiv.appendChild(frameDiv);
+                slideContainer.appendChild(slideDiv);
             });
-            // Initialize the first slide to be active
-            filmStrip.children[0].classList.add('active');
-            updateSlideDisplay();
-        }
-        
-        function applyTransition(oldSlide, newSlide, direction) {
-            // Remove previous transition classes and reset state
-            oldSlide.className = 'slide absolute top-0 left-0 w-full h-full';
-            newSlide.className = 'slide absolute top-0 left-0 w-full h-full';
             
-            // Choose a random transition effect
-            const transitionType = transitions[Math.floor(Math.random() * transitions.length)];
-            
-            // 1. Fade Transition
-            if (transitionType === 'fade') {
-                oldSlide.classList.add('transition-out-fade');
-                newSlide.classList.add('active', 'transition-in-fade');
-            } 
-            
-            // 2. Slide Transition
-            else if (transitionType === 'slide') {
-                const outClass = direction === 'next' ? 'transition-out-slide' : 'transition-out-slide-reverse';
-                const inClass = direction === 'next' ? 'transition-in-slide' : 'transition-in-slide-reverse';
-
-                // Setup initial position of new slide off-screen
-                newSlide.style.transform = direction === 'next' ? 'translateX(100%) scale(0.9)' : 'translateX(-100%) scale(0.9)';
-                newSlide.style.opacity = '0';
-                
-                // Animate the transition
-                setTimeout(() => {
-                    oldSlide.classList.add(outClass);
-                    newSlide.classList.add('active');
-                    newSlide.style.transform = 'translateX(0) scale(1.0)';
-                    newSlide.style.opacity = '1';
-                }, 50);
-            } 
-            
-            // 3. Zoom Transition
-            else if (transitionType === 'zoom') {
-                oldSlide.classList.add('transition-out-zoom');
-                newSlide.classList.add('active', 'transition-in-zoom');
-            }
-
-            // Cleanup: remove old slide's 'active' state after transition
-            setTimeout(() => {
-                oldSlide.classList.remove('active');
-            }, 500); 
+            // Initialize first slide
+            slideContainer.children[0].classList.add('active');
+            updateTerminal();
         }
 
-        function changeSlide(newSlideIndex, direction) {
-            stopAutoSlide(); 
+        // Slide transition
+        function transitionSlide(newIndex, direction = 'next') {
+            const oldSlide = slideContainer.children[currentSlide];
+            const newSlide = slideContainer.children[newIndex];
             
-            const oldSlide = filmStrip.children[currentSlide];
-            const newSlide = filmStrip.children[newSlideIndex];
-
-            if (oldSlide && newSlide) {
-                applyTransition(oldSlide, newSlide, direction);
-            }
-
-            currentSlide = newSlideIndex;
-            updateSlideDisplay();
-            startAutoSlide(); // Restart auto slide after manual or automated interaction
-        }
-
-
-        function updateSlideDisplay() {
-            // Update counter and ID text
-            slideCounter.textContent = `FILE ${currentSlide + 1}/${totalSlides}`;
-            slideIdDisplay.textContent = `ID: ${imageFiles[currentSlide].id}`;
+            if (!oldSlide || !newSlide) return;
             
-            // Adjust body background color slightly based on slide index for a minor effect
-            document.body.style.backgroundColor = currentSlide % 2 === 0 ? 'var(--black)' : '#0f0f0f';
+            oldSlide.classList.remove('active');
+            newSlide.classList.add('active');
+            
+            currentSlide = newIndex;
+            updateTerminal();
         }
 
         function nextSlide() {
-            const nextIndex = (currentSlide + 1) % totalSlides;
-            changeSlide(nextIndex, 'next');
+            const nextIndex = (currentSlide + 1) % massacreImages.length;
+            transitionSlide(nextIndex, 'next');
         }
 
         function prevSlide() {
-            const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
-            changeSlide(prevIndex, 'prev');
+            const prevIndex = (currentSlide - 1 + massacreImages.length) % massacreImages.length;
+            transitionSlide(prevIndex, 'prev');
         }
 
         function startAutoSlide() {
@@ -416,91 +757,111 @@
         function stopAutoSlide() {
             if (autoSlideInterval) clearInterval(autoSlideInterval);
         }
-        
-        // Navigation button listeners
-        document.getElementById('next-button').addEventListener('click', () => {
-            nextSlide();
-        });
-        document.getElementById('prev-button').addEventListener('click', () => {
-            prevSlide();
-        });
-        
-        // ------------------------------------------
-        // MODIFIED: Audio and Start Logic
-        // ------------------------------------------
 
-        function initializeStream() {
-            // Start slideshow automatically after the 3-second initialization delay
-            startAutoSlide();
+        // Update terminal display
+        function updateTerminal() {
+            const file = massacreImages[currentSlide];
+            slideId.textContent = `[${file.id}]`;
+            slideCounter.innerHTML = `
+                <span class="text-accent-red">FILE ${currentSlide + 1}/${massacreImages.length}</span>
+                <span class="text-gray-500 ml-2">// LEVEL: ${file.clearance}</span>
+            `;
             
-            // Fade out the overlay
-            unmuteOverlay.style.opacity = '0';
-            setTimeout(() => {
-                unmuteOverlay.style.display = 'none';
-            }, 1000); 
-        }
-
-        // Audio setup and auto-play logic
-        function setupAudio() {
-            const audio = document.getElementById('background-audio');
+            // Update caption in data terminal
+            const terminalContainer = document.querySelector('.data-terminal');
+            const existingCaption = terminalContainer.querySelector('.caption');
             
-            // Unmute and start audio after user interaction 
-            const unmuteAndPlay = () => {
-                // Ensure only one trigger happens
-                unmuteOverlay.removeEventListener('click', unmuteAndPlay);
-
-                // Start the 3-second loading delay
-                setTimeout(() => {
-                    audio.muted = false;
-                    audio.currentTime = 25;
-                    
-                    const playPromise = audio.play();
-
-                    if (playPromise !== undefined) {
-                        playPromise.then(() => {
-                            // Playback started successfully, initialize the rest of the stream
-                            initializeStream();
-                        }).catch(error => {
-                            console.error("Audio playback failed, likely still blocked.", error);
-                            // Even if playback fails, proceed with the visual stream
-                            initializeStream();
-                        });
-                    } else {
-                        // In case playPromise is undefined, proceed anyway
-                        initializeStream();
-                    }
-                }, 3000); // 3 second delay for "loading"
-            };
-
-            // Show overlay on load, waiting for click
-            unmuteOverlay.style.opacity = '1';
-            unmuteOverlay.addEventListener('click', unmuteAndPlay);
-        }
-        
-        // Glitch effect for the header text
-        function applyGlitchEffect() {
-            const glitchElement = document.querySelector('.glitch-text span');
-            const originalText = glitchElement.getAttribute('data-text');
-
-            if (!glitchElement || !originalText) return;
-
-            function glitch() {
-                const random = Math.random();
-                if (random < 0.15) { 
-                    glitchElement.style.transform = `translate(${Math.random() * 3}px, ${Math.random() * 3}px)`;
-                } else {
-                    glitchElement.style.transform = 'translate(0, 0)';
-                }
+            if (existingCaption) {
+                existingCaption.innerHTML = `
+                    <span class="text-accent-red">${file.caption}</span>
+                    <span class="text-gray-600 ml-2">// ${file.timestamp}</span>
+                `;
+            } else {
+                const captionDiv = document.createElement('div');
+                captionDiv.className = 'caption font-tech text-sm text-gray-400 mt-2 flex-1 text-center';
+                captionDiv.innerHTML = `
+                    <span class="text-accent-red">${file.caption}</span>
+                    <span class="text-gray-600 ml-2">// ${file.timestamp}</span>
+                `;
+                
+                const counterDiv = terminalContainer.querySelector('#slideCounter').parentElement;
+                terminalContainer.insertBefore(captionDiv, counterDiv.nextSibling);
             }
-
-            setInterval(glitch, 70); 
         }
 
+        // Initialize everything
         window.onload = function() {
             lucide.createIcons();
-            renderSlides(); 
-            applyGlitchEffect();
-            setupAudio(); // Initialize audio/stream start process
+            renderSlides();
+            
+            // Start automatically without click
+            setTimeout(autoInitialize, 100);
+            
+            // Event Listeners for manual control
+            document.getElementById('next-btn').addEventListener('click', () => {
+                nextSlide();
+                stopAutoSlide();
+                startAutoSlide();
+            });
+            
+            document.getElementById('prev-btn').addEventListener('click', () => {
+                prevSlide();
+                stopAutoSlide();
+                startAutoSlide();
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                switch(e.key) {
+                    case 'ArrowRight':
+                    case ' ':
+                        nextSlide();
+                        stopAutoSlide();
+                        startAutoSlide();
+                        break;
+                    case 'ArrowLeft':
+                        prevSlide();
+                        stopAutoSlide();
+                        startAutoSlide();
+                        break;
+                }
+            });
+            
+            // Touch/swipe support
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            slideContainer.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            });
+            
+            slideContainer.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            });
+            
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const difference = touchStartX - touchEndX;
+                
+                if (Math.abs(difference) > swipeThreshold) {
+                    if (difference > 0) {
+                        nextSlide();
+                    } else {
+                        prevSlide();
+                    }
+                    stopAutoSlide();
+                    startAutoSlide();
+                }
+            }
+            
+            // Auto-start audio on first click if blocked
+            document.addEventListener('click', () => {
+                const audio = document.getElementById('backgroundAudio');
+                if (audio.paused) {
+                    audio.play().catch(e => console.log("Audio play requires user interaction"));
+                }
+            }, { once: true });
         };
     </script>
 </body>
