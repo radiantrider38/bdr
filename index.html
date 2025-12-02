@@ -393,7 +393,7 @@
             text-align: center;
             width: 150px;
             padding: 1rem;
-            background: #1f1d1d;
+            background: #000000;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
             transition: transform 0.3s ease;
@@ -415,6 +415,59 @@
             box-shadow: 0 0 20px rgba(138, 3, 3, 0.2);
         }
         /* Removed unnecessary narrative-details and related styles since we are restructuring the content */
+
+        /* --- UPDATED PILKHANA IMAGE CARD STYLES --- */
+        .pilkhana-image-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px -10px rgba(138, 3, 3, 0.7);
+        }
+        .pilkhana-image-card:hover {
+            border-color: var(--bright-red);
+            transform: scale(1.02);
+        }
+        .pilkhana-image-card .hover-text-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            opacity: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+            z-index: 10;
+        }
+        .pilkhana-image-card:hover .hover-text-overlay {
+            opacity: 1;
+        }
+        .pilkhana-image-card .hover-text {
+            color: #fff;
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem; /* Base size */
+            font-weight: 900;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 1), 0 0 5px rgba(255, 0, 0, 0.8);
+            transition: transform 0.5s ease, font-size 0.5s ease;
+            transform: translateY(20px);
+            text-align: center;
+            line-height: 1.1;
+        }
+        .pilkhana-image-card:hover .hover-text {
+            transform: translateY(0);
+            font-size: 3.5rem; /* Larger on hover */
+        }
+        @media (min-width: 768px) {
+            .pilkhana-image-card .hover-text {
+                font-size: 3rem;
+            }
+            .pilkhana-image-card:hover .hover-text {
+                font-size: 5rem;
+            }
+        }
+        
     </style>
 </head>
 <body class="bg-black text-gray-300 antialiased selection:bg-red-900 selection:text-white">
@@ -466,6 +519,7 @@
                     <a href="#nexus" class="hover:text-white transition hover:text-red-500">The Nexus</a>
                     <a href="#logical_analysis" class="hover:text-white transition text-yellow-500 font-bold">The Analysis</a>
                     <a href="#digital-evidence" class="hover:text-white transition text-red-500 font-bold">Video Evidence</a>
+                    <a href="#pilkhana-image" class="hover:text-white transition text-red-500 font-bold">Visual Archive</a>
                     <a href="#timeline" class="hover:text-white transition hover:text-red-500">Timeline</a>
                     <a href="#revolution" class="hover:text-white transition text-green-500 font-bold">Rebirth</a>
                 </div>
@@ -481,6 +535,7 @@
                 <a href="#nexus" onclick="toggleMobileMenu()" class="py-3 text-xs uppercase tracking-widest text-gray-400 hover:text-red-500 w-full text-center border-b border-gray-800">The Nexus</a>
                 <a href="#logical_analysis" onclick="toggleMobileMenu()" class="py-3 text-xs uppercase tracking-widest text-yellow-500 font-bold w-full text-center border-b border-gray-800">The Analysis</a>
                 <a href="#digital-evidence" onclick="toggleMobileMenu()" class="py-3 text-xs uppercase tracking-widest text-red-500 font-bold w-full text-center border-b border-gray-800">Video Evidence</a>
+                <a href="#pilkhana-image" onclick="toggleMobileMenu()" class="py-3 text-xs uppercase tracking-widest text-red-500 font-bold w-full text-center border-b border-gray-800">Visual Archive</a>
                 <a href="#timeline" onclick="toggleMobileMenu()" class="py-3 text-xs uppercase tracking-widest text-gray-400 hover:text-red-500 w-full text-center border-b border-gray-800">Timeline</a>
                 <a href="#revolution" onclick="toggleMobileMenu()" class="py-3 text-xs uppercase tracking-widest text-green-500 font-bold w-full text-center">Rebirth</a>
             </div>
@@ -551,10 +606,8 @@
                 </p>
 
                 <div class="mt-10 space-y-8 relative">
-                    <!-- Vertical divider line for the narrative flow -->
                     <div class="absolute left-3 top-0 bottom-0 w-[2px] bg-red-900/50"></div>
 
-                    <!-- Narrative Step 1: The Trap -->
                     <div class="relative pl-10 group">
                         <i data-lucide="zap" class="w-6 h-6 text-red-500 absolute -left-3.5 top-0 bg-[#0a0a0a] p-1 rounded-full border-2 border-red-900 group-hover:bg-red-900 transition"></i>
                         <h4 class="font-cinzel text-xl text-white mb-2">FEB 25, 09:26 AM: The Trap</h4>
@@ -563,7 +616,6 @@
                         </p>
                     </div>
 
-                    <!-- Narrative Step 2: The Assassination -->
                     <div class="relative pl-10 group">
                         <i data-lucide="skull" class="w-6 h-6 text-red-500 absolute -left-3.5 top-0 bg-[#0a0a0a] p-1 rounded-full border-2 border-red-900 group-hover:bg-red-900 transition"></i>
                         <h4 class="font-cinzel text-xl text-white mb-2">LAST PHONE CALLS & THE MONSTER</h4>
@@ -572,7 +624,6 @@
                         </p>
                     </div>
 
-                    <!-- Narrative Step 3: The Target & Partners -->
                     <div class="relative pl-10 group">
                         <i data-lucide="target" class="w-6 h-6 text-red-500 absolute -left-3.5 top-0 bg-[#0a0a0a] p-1 rounded-full border-2 border-red-900 group-hover:bg-red-900 transition"></i>
                         <h4 class="font-cinzel text-xl text-white mb-2">THE REAL TARGET & THE PARTNERS</h4>
@@ -713,7 +764,7 @@
     <section id="nexus" class="py-24 bg-neutral-900 border-y border-gray-800 relative mesh-bg">
         <div class="absolute inset-0 bg-gradient-to-b from-black/80 to-transparent"></div>
         
-        <div class="container mx-auto px-6 max-w-6xl relative z-10">
+        <div class="container mx-auto px-6 max-w-6xl">
             <h2 class="text-4xl font-cinzel text-white mb-16 text-center">THE DOMESTIC NEXUS</h2>
 
             <div class="relative w-full h-[600px] md:h-[500px] bg-black/50 border border-gray-800 rounded-xl overflow-hidden shadow-2xl">
@@ -1132,7 +1183,35 @@
             </div>
         </div>
     </section>
+    
+    <section id="pilkhana-image" class="py-24 bg-neutral-900 relative border-b border-red-900/30 overflow-hidden">
+        <div class="container mx-auto px-6 max-w-4xl relative z-10">
+            <div class="text-center mb-12">
+                <span class="text-red-600 font-mono text-xs tracking-widest border border-red-600 px-2 py-1">VISUAL ARCHIVE</span>
+                <h2 class="text-4xl md:text-5xl font-cinzel text-white mt-4">EXPOSURES</h2>
+                <p class="text-gray-500 mt-2 font-mono text-sm">ARCHIVED PHOTOGRAPHY // CLICK TO SEE VISUALS </p>
+            </div>
 
+            <a href="https://radiantrider38.github.io/bdr/image" target="_blank" class="block">
+                <div class="pilkhana-image-card w-full rounded-lg border-2 border-red-900/50">
+                    <div class="hover-text-overlay">
+                     
+                    </div>
+                    <img
+                        src="https://tds-images.thedailystar.net/sites/default/files/styles/very_big_201/public/feature/images/pilkhana_tragedy.jpg"
+                        alt="Archived image of Pilkhana Tragedy site"
+                        class="w-full h-auto object-cover opacity-80"
+                    >
+                </div>
+            </a>
+
+            <div class="text-center mt-8">
+                <p class="text-sm font-playfair italic text-gray-400">
+                    "A picture from the site, showing the devastation and the ultimate price paid for a nation's sovereignty."
+                </p>
+            </div>
+        </div>
+    </section>
     <section id="evidence" class="py-24 bg-black relative overflow-hidden">
         <div class="absolute inset-0 bg-[linear-gradient(rgba(30,30,30,0.5)_1px,transparent_1px),linear-gradient(90deg,rgba(30,30,30,0.5)_1px,transparent_1px)] bg-[size:20px_20px] opacity-10"></div>
         
@@ -1479,6 +1558,12 @@
             gsap.from(".target-node", {
                 opacity: 0, scale: 0.8, stagger: 0.2, duration: 0.6, delay: 0.5,
                 scrollTrigger: { trigger: ".target-group", start: "top 90%" }
+            });
+            
+             // Animate New Image Card
+            gsap.from(".pilkhana-image-card", {
+                y: 50, opacity: 0, duration: 1.0, ease: "power2.out",
+                scrollTrigger: { trigger: "#pilkhana-image", start: "top 85%" }
             });
         }
 
