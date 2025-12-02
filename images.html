@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BDR MASSACRE VISUALS</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Oswald:wght@300;500;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --blood-red: #8a0303;
+            --black: #050505;
+            --dark-gray: #111;
+            --accent-yellow: #f59e0b;
+        }
+
+        body {
+            background-color: var(--black);
+            color: #e5e5e5;
+            font-family: 'Oswald', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .font-mono { font-family: 'Share Tech Mono', monospace; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--blood-red); }
+
+        /* Background Grid Pattern */
+        .grid-bg {
+            position: fixed;
+            inset: 0;
+            background-image: linear-gradient(to right, rgba(50, 0, 0, 0.1) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(50, 0, 0, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.15;
+        }
+
+        /* Header Styling */
+        .header-bg {
+            background: linear-gradient(90deg, var(--dark-gray) 0%, var(--black) 50%, var(--dark-gray) 100%);
+            border-bottom: 3px solid var(--blood-red);
+            box-shadow: 0 5px 20px rgba(138, 3, 3, 0.6);
+        }
+
+        /* Slideshow Styles */
+        .slideshow-container {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+            padding: 20px 0;
+        }
+
+        .slide-wrapper {
+            position: relative;
+            width: 95%; /* Increased width for better mobile view */
+            max-width: 1200px;
+            overflow: hidden;
+            border: 4px solid var(--blood-red);
+            box-shadow: 0 0 30px rgba(138, 3, 3, 0.8);
+            background: rgba(10, 0, 0, 0.7);
+        }
+        
+        /* Slideshow Film Strip */
+        .film-strip {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-top: 56.25%; /* Container for 16:9 aspect ratio */
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            opacity: 0;
+            transform: scale(1.05) translateY(10px); /* Base state for zoom/slide transition */
+        }
+        
+        .slide.active {
+            opacity: 1;
+            transform: scale(1.0) translateY(0);
+            z-index: 2;
+        }
+
+        /* --- Custom Transition Classes defined statically (FIX for SecurityError) --- */
+        .slide.transition-out-fade {
+            opacity: 0;
+        }
+        .slide.transition-in-fade {
+            opacity: 1;
+        }
+        
+        /* Sliding Transitions */
+        .slide.transition-out-slide {
+            transform: translateX(-100%) scale(0.9);
+            opacity: 0;
+        }
+        .slide.transition-in-slide {
+            transform: translateX(0) scale(1.0);
+            opacity: 1;
+        }
+        .slide.transition-out-slide-reverse {
+            transform: translateX(100%) scale(0.9);
+            opacity: 0;
+        }
+        /* Zoom Transitions */
+        .slide.transition-out-zoom {
+            transform: scale(1.2);
+            opacity: 0;
+        }
+        .slide.transition-in-zoom {
+            transform: scale(1.0);
+            opacity: 1;
+        }
+        /* --- End Custom Transition Classes --- */
+
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; 
+            filter: grayscale(20%) contrast(1.1);
+            transition: filter 0.5s ease;
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 0.5rem 1rem;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--accent-yellow);
+            border-top: 1px dashed var(--blood-red);
+        }
+
+        /* Navigation Buttons */
+        .nav-button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            padding: 0.5rem;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background 0.3s, color 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 10px rgba(138, 3, 3, 0.5);
+        }
+        .nav-button:hover {
+            background: var(--blood-red);
+        }
+        #prev-button { left: 1rem; }
+        #next-button { right: 1rem; }
+        /* Responsive button sizing */
+        @media (max-width: 768px) {
+            .nav-button {
+                padding: 0.75rem;
+            }
+        }
+
+        /* Glitch effect for the header text */
+        .glitch-text {
+            position: relative;
+            color: #fff;
+            text-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 0 0 5px rgba(0, 0, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-black text-gray-300">
+    <!-- Unmute button overlay -->
+    <div id="unmute-overlay" class="fixed inset-0 bg-black/90 z-[100] flex flex-col items-center justify-center cursor-pointer opacity-0 transition-opacity duration-1000">
+        <i data-lucide="volume-2" class="w-16 h-16 text-red-600 animate-pulse mb-6"></i>
+        <h2 class="text-2xl font-cinzel text-red-500 tracking-widest">START OPERATION</h2>
+        <p class="text-sm font-mono text-gray-400 mt-2">Click anywhere to decrypt audio and begin visual stream.</p>
+    </div>
+    
+    <audio id="background-audio" loop autoplay preload="auto" muted>
+        <source src="https://github.com/radiantrider38/bdr/raw/refs/heads/images/HYDER%20HUSYN%20SONG%20%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%9A%E0%A6%BF%E0%A7%8E%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%95%E0%A6%B0%E0%A7%87%20%E0%A6%95%E0%A6%BE%E0%A6%81%E0%A6%A6%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%B9%E0%A6%BF%E0%A7%9F%E0%A6%BE%20%20BDR%20TRAGEDY%20-%20Hyder%20Husyn%20Music%20(youtube).mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <div class="grid-bg"></div>
+
+    <header class="sticky top-0 z-50 py-6 header-bg">
+        <div class="container mx-auto px-4 text-center">
+            <div class="inline-block px-3 py-1 mb-2 border-r-4 border-l-4 border-red-700 bg-red-950/20 shadow-lg shadow-red-900/50">
+                <span class="text-xs font-mono text-red-500 tracking-[0.3em] flex items-center justify-center gap-2">
+                    <i data-lucide="scan" class="w-4 h-4"></i> DEEP SCAN ARCHIVE ONLINE
+                </span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-cinzel font-black text-white tracking-tighter leading-none glitch-text">
+                <span data-text="BDR MASSACRE VISUALS">BDR MASSACRE VISUALS</span>
+            </h1>
+            <p class="text-sm font-oswald uppercase tracking-widest text-gray-400 mt-2">VISUAL EVIDENCE OF SOVEREIGNTY BETRAYAL</p>
+        </div>
+    </header>
+
+    <main class="slideshow-container">
+        <div class="slide-wrapper">
+            <div class="film-strip" id="film-strip">
+                <!-- Slides will be inserted here by JavaScript -->
+            </div>
+            
+            <button id="prev-button" class="nav-button p-4">
+                <i data-lucide="chevron-left" class="w-6 h-6"></i>
+            </button>
+            <button id="next-button" class="nav-button p-4">
+                <i data-lucide="chevron-right" class="w-6 h-6"></i>
+            </button>
+            
+            <div class="absolute bottom-0 left-0 right-0 py-2 px-4 bg-black/80 font-mono text-xs text-red-400 border-t border-red-900 flex justify-between">
+                <span id="slide-id">ID: 20093153030127580_10</span>
+                <span id="slide-counter">FILE 1/11</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-black py-6 border-t border-red-900/50 text-center relative z-10">
+        <div class="relative z-10">
+            <p class="text-xs font-mono text-red-600 tracking-[0.2em] uppercase mb-1">END OF TRANSMISSION // FILE 11/11 CLOSED</p>
+            <p class="text-xs text-gray-600">UNOFFICIAL ARCHIVE - DATA INTEGRITY CHECK: OK</p>
+        </div>
+    </footer>
+
+    <script>
+        const imageFiles = [
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/20093153030127580_10.webp", id: "20093153030127580_10", caption: "MAIN GATE: INITIAL INTRUSION" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/4067562_5.jpg", id: "4067562_5", caption: "MUTINEER COMMAND: EARLY HOURS" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Bangladesh-mutiny-Mutinou-006.avif", id: "MUTINY-006", caption: "WEAPONS CACHE: NON-STANDARD AMMO" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/BDR-2009-MUTINY-1-5da7692e8dde94f243ea6d95034ac982.webp", id: "BDR-MUTINY-1", caption: "DARBAR HALL SIEGE: DAY ONE" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Daily-sun-27-02-2019-1.jpg", id: "DAILY-SUN-27-02-2019-1", caption: "AFTERMATH: NEWSPAPER FRONT PAGE" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Type_69-IIMk.2g.jpg", id: "TYPE_69-IIMK.2G", caption: "ARMORED SUPPORT: ARMY STAND DOWN" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/bdrmtunycmnty.jpg", id: "BDRMUTINYCMNTY", caption: "THE SMOKESCREEN: WAGE DISPUTE" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/bef6de20-d215-11ee-b83b-0f87a864f372.jpg.webp", id: "BEF6DE20-D215-11EE", caption: "TARGETED OFFICER: COMMANDER SHAKIL" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/pilkhana.jpg", id: "PILKHANA", caption: "BDR HEADQUARTERS: DAY 2" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/rebel-bdr-men-main-gate-headquarters-pilkhana-440nw-3563934a.jpg", id: "REBEL-BDR-MEN", caption: "THE RISING: FAKE REVOLT" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/tm-news-748d10ed-5e76-4a5f-8aa1-c0c90b6970c1.jpg", id: "TM-NEWS-748D10ED", caption: "MEDIA BLACKOUT: CONTROLLED NARRATIVE" }
+        ];
+
+        let currentSlide = 0;
+        let autoSlideInterval;
+        const autoAdvanceDelay = 4000; // 4 seconds per slide
+        const filmStrip = document.getElementById('film-strip');
+        const slideCounter = document.getElementById('slide-counter');
+        const slideIdDisplay = document.getElementById('slide-id');
+        const unmuteOverlay = document.getElementById('unmute-overlay');
+        const totalSlides = imageFiles.length;
+        
+        const transitions = ['fade', 'slide', 'zoom'];
+
+        function renderSlides() {
+            imageFiles.forEach((file, index) => {
+                const slideDiv = document.createElement('div');
+                slideDiv.className = 'slide absolute top-0 left-0 w-full h-full';
+                slideDiv.setAttribute('data-id', file.id);
+                slideDiv.setAttribute('data-index', index);
+
+                const img = document.createElement('img');
+                img.src = file.url;
+                img.alt = file.caption;
+                
+                slideDiv.appendChild(img);
+                filmStrip.appendChild(slideDiv);
+            });
+            // Initialize the first slide to be active
+            filmStrip.children[0].classList.add('active');
+            updateSlideDisplay();
+        }
+        
+        function applyTransition(oldSlide, newSlide, direction) {
+            // Remove previous transition classes and reset state
+            oldSlide.className = 'slide absolute top-0 left-0 w-full h-full';
+            newSlide.className = 'slide absolute top-0 left-0 w-full h-full';
+            
+            // Choose a random transition effect
+            const transitionType = transitions[Math.floor(Math.random() * transitions.length)];
+            
+            // 1. Fade Transition
+            if (transitionType === 'fade') {
+                oldSlide.classList.add('transition-out-fade');
+                newSlide.classList.add('active', 'transition-in-fade');
+            } 
+            
+            // 2. Slide Transition
+            else if (transitionType === 'slide') {
+                const outClass = direction === 'next' ? 'transition-out-slide' : 'transition-out-slide-reverse';
+                const inClass = direction === 'next' ? 'transition-in-slide' : 'transition-in-slide-reverse';
+
+                // Setup initial position of new slide off-screen
+                newSlide.style.transform = direction === 'next' ? 'translateX(100%) scale(0.9)' : 'translateX(-100%) scale(0.9)';
+                newSlide.style.opacity = '0';
+                
+                // Animate the transition
+                setTimeout(() => {
+                    oldSlide.classList.add(outClass);
+                    newSlide.classList.add('active');
+                    newSlide.style.transform = 'translateX(0) scale(1.0)';
+                    newSlide.style.opacity = '1';
+                }, 50);
+            } 
+            
+            // 3. Zoom Transition
+            else if (transitionType === 'zoom') {
+                oldSlide.classList.add('transition-out-zoom');
+                newSlide.classList.add('active', 'transition-in-zoom');
+            }
+
+            // Cleanup: remove old slide's 'active' state after transition
+            setTimeout(() => {
+                oldSlide.classList.remove('active');
+            }, 500); 
+        }
+
+        function changeSlide(newSlideIndex, direction) {
+            stopAutoSlide(); 
+            
+            const oldSlide = filmStrip.children[currentSlide];
+            const newSlide = filmStrip.children[newSlideIndex];
+
+            if (oldSlide && newSlide) {
+                applyTransition(oldSlide, newSlide, direction);
+            }
+
+            currentSlide = newSlideIndex;
+            updateSlideDisplay();
+            startAutoSlide(); // Restart auto slide after manual or automated interaction
+        }
+
+
+        function updateSlideDisplay() {
+            // Update counter and ID text
+            slideCounter.textContent = `FILE ${currentSlide + 1}/${totalSlides}`;
+            slideIdDisplay.textContent = `ID: ${imageFiles[currentSlide].id}`;
+            
+            // Adjust body background color slightly based on slide index for a minor effect
+            document.body.style.backgroundColor = currentSlide % 2 === 0 ? 'var(--black)' : '#0f0f0f';
+        }
+
+        function nextSlide() {
+            const nextIndex = (currentSlide + 1) % totalSlides;
+            changeSlide(nextIndex, 'next');
+        }
+
+        function prevSlide() {
+            const prevIndex = (currentSlide - 1 + totalSlides) % totalSlides;
+            changeSlide(prevIndex, 'prev');
+        }
+
+        function startAutoSlide() {
+            if (autoSlideInterval) clearInterval(autoSlideInterval);
+            autoSlideInterval = setInterval(nextSlide, autoAdvanceDelay);
+        }
+
+        function stopAutoSlide() {
+            if (autoSlideInterval) clearInterval(autoSlideInterval);
+        }
+        
+        // Navigation button listeners
+        document.getElementById('next-button').addEventListener('click', () => {
+            nextSlide();
+        });
+        document.getElementById('prev-button').addEventListener('click', () => {
+            prevSlide();
+        });
+        
+        // ------------------------------------------
+        // MODIFIED: Audio and Start Logic
+        // ------------------------------------------
+
+        function initializeStream() {
+            // Start slideshow automatically after the 3-second initialization delay
+            startAutoSlide();
+            
+            // Fade out the overlay
+            unmuteOverlay.style.opacity = '0';
+            setTimeout(() => {
+                unmuteOverlay.style.display = 'none';
+            }, 1000); 
+        }
+
+        // Audio setup and auto-play logic
+        function setupAudio() {
+            const audio = document.getElementById('background-audio');
+            
+            // Unmute and start audio after user interaction 
+            const unmuteAndPlay = () => {
+                // Ensure only one trigger happens
+                unmuteOverlay.removeEventListener('click', unmuteAndPlay);
+
+                // Start the 3-second loading delay
+                setTimeout(() => {
+                    audio.muted = false;
+                    audio.currentTime = 25;
+                    
+                    const playPromise = audio.play();
+
+                    if (playPromise !== undefined) {
+                        playPromise.then(() => {
+                            // Playback started successfully, initialize the rest of the stream
+                            initializeStream();
+                        }).catch(error => {
+                            console.error("Audio playback failed, likely still blocked.", error);
+                            // Even if playback fails, proceed with the visual stream
+                            initializeStream();
+                        });
+                    } else {
+                        // In case playPromise is undefined, proceed anyway
+                        initializeStream();
+                    }
+                }, 3000); // 3 second delay for "loading"
+            };
+
+            // Show overlay on load, waiting for click
+            unmuteOverlay.style.opacity = '1';
+            unmuteOverlay.addEventListener('click', unmuteAndPlay);
+        }
+        
+        // Glitch effect for the header text
+        function applyGlitchEffect() {
+            const glitchElement = document.querySelector('.glitch-text span');
+            const originalText = glitchElement.getAttribute('data-text');
+
+            if (!glitchElement || !originalText) return;
+
+            function glitch() {
+                const random = Math.random();
+                if (random < 0.15) { 
+                    glitchElement.style.transform = `translate(${Math.random() * 3}px, ${Math.random() * 3}px)`;
+                } else {
+                    glitchElement.style.transform = 'translate(0, 0)';
+                }
+            }
+
+            setInterval(glitch, 70); 
+        }
+
+        window.onload = function() {
+            lucide.createIcons();
+            renderSlides(); 
+            applyGlitchEffect();
+            setupAudio(); // Initialize audio/stream start process
+        };
+    </script>
+</body>
+</html>
