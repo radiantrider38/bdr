@@ -104,7 +104,7 @@
             z-index: 2;
         }
 
-        /* --- Custom Transition Classes defined statically (FIX for SecurityError) --- */
+        /* --- Custom Transition Classes defined statically --- */
         .slide.transition-out-fade {
             opacity: 0;
         }
@@ -145,18 +145,38 @@
             transition: filter 0.5s ease;
         }
         
-        .slide-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            padding: 0.5rem 1rem;
-            font-family: 'Share Tech Mono', monospace;
-            font-size: 0.75rem;
-            color: var(--accent-yellow);
-            border-top: 1px dashed var(--blood-red);
+        /* New Confidential Frame Styling */
+        .confidential-frame {
+            position: relative;
+            padding: 15px; /* Creates the border space */
+            border: 1px solid #333;
+            box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
+        .confidential-frame::before, .confidential-frame::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            border: 2px solid var(--accent-yellow);
+            transition: all 0.3s ease;
+        }
+        .confidential-frame::before {
+            top: 0;
+            left: 0;
+            border-right: none;
+            border-bottom: none;
+        }
+        .confidential-frame::after {
+            bottom: 0;
+            right: 0;
+            border-left: none;
+            border-top: none;
+        }
+        .slide.active .confidential-frame::before, .slide.active .confidential-frame::after {
+            border-color: var(--blood-red);
+        }
+
 
         /* Navigation Buttons */
         .nav-button {
@@ -203,7 +223,7 @@
     
     <audio id="background-audio" loop autoplay preload="auto" muted>
         <source src="https://github.com/radiantrider38/bdr/raw/refs/heads/images/HYDER%20HUSYN%20SONG%20%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%9A%E0%A6%BF%E0%A7%8E%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%95%E0%A6%B0%E0%A7%87%20%E0%A6%95%E0%A6%BE%E0%A6%81%E0%A6%A6%E0%A6%BF%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%B9%E0%A6%BF%E0%A7%9F%E0%A6%BE%20%20BDR%20TRAGEDY%20-%20Hyder%20Husyn%20Music%20(youtube).mp3" type="audio/mp3">
-        Your browser does not support the audio element.
+        Your browser does support the audio element.
     </audio>
 
     <div class="grid-bg"></div>
@@ -237,20 +257,21 @@
             
             <div class="absolute bottom-0 left-0 right-0 py-2 px-4 bg-black/80 font-mono text-xs text-red-400 border-t border-red-900 flex justify-between">
                 <span id="slide-id">ID: 20093153030127580_10</span>
-                <span id="slide-counter">FILE 1/11</span>
+                <span id="slide-counter">FILE 1/19</span>
             </div>
         </div>
     </main>
 
     <footer class="bg-black py-6 border-t border-red-900/50 text-center relative z-10">
         <div class="relative z-10">
-            <p class="text-xs font-mono text-red-600 tracking-[0.2em] uppercase mb-1">END OF TRANSMISSION // FILE 11/11 CLOSED</p>
+            <p class="text-xs font-mono text-red-600 tracking-[0.2em] uppercase mb-1">END OF TRANSMISSION // FILE 19/19 CLOSED</p>
             <p class="text-xs text-gray-600">UNOFFICIAL ARCHIVE - DATA INTEGRITY CHECK: OK</p>
         </div>
     </footer>
 
     <script>
         const imageFiles = [
+            // Original Images
             { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/20093153030127580_10.webp", id: "20093153030127580_10", caption: "MAIN GATE: INITIAL INTRUSION" },
             { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/4067562_5.jpg", id: "4067562_5", caption: "MUTINEER COMMAND: EARLY HOURS" },
             { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/Bangladesh-mutiny-Mutinou-006.avif", id: "MUTINY-006", caption: "WEAPONS CACHE: NON-STANDARD AMMO" },
@@ -261,7 +282,17 @@
             { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/bef6de20-d215-11ee-b83b-0f87a864f372.jpg.webp", id: "BEF6DE20-D215-11EE", caption: "TARGETED OFFICER: COMMANDER SHAKIL" },
             { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/pilkhana.jpg", id: "PILKHANA", caption: "BDR HEADQUARTERS: DAY 2" },
             { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/rebel-bdr-men-main-gate-headquarters-pilkhana-440nw-3563934a.jpg", id: "REBEL-BDR-MEN", caption: "THE RISING: FAKE REVOLT" },
-            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/tm-news-748d10ed-5e76-4a5f-8aa1-c0c90b6970c1.jpg", id: "TM-NEWS-748D10ED", caption: "MEDIA BLACKOUT: CONTROLLED NARRATIVE" }
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/images/tm-news-748d10ed-5e76-4a5f-8aa1-c0c90b6970c1.jpg", id: "TM-NEWS-748D10ED", caption: "MEDIA BLACKOUT: CONTROLLED NARRATIVE" },
+            
+            // New Images from bdr img.txt
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/2009226154159581734_3.webp", id: "2009226154159581734_3", caption: "MASS GRAVE DISCOVERY: OFFICER REMAINS" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/4847e65bd1e483b19169d015e4b42d5f0bb30f35.webp", id: "4847E65BD1E483B1", caption: "EVIDENCE RECOVERY: DARBAR HALL" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/Firefighters-and-soldiers-001.avif", id: "FIREFIGHTERS-001", caption: "RESCUE AND CONTAINMENT OPERATIONS" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/bangladeshi-rescue-officials-stand-alongside-four-10-440nw-7926417d.jpg", id: "RESCUE-OFFICIALS", caption: "POST-SIEGE: SEARCH AND RECOVERY" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/images%20(1).jfif", id: "IMAGES-1-JFIF", caption: "BDR SOLDIERS IN THE FIELD" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/images.jfif", id: "IMAGES-JFIF", caption: "HEADQUARTERS DAMAGE ASSESSMENT" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/m_id_81095_bdr_mutiny.avif", id: "M_ID_81095", caption: "MUTINY LEADER: CAPTURED" },
+            { url: "https://raw.githubusercontent.com/radiantrider38/bdr/refs/heads/radiantrider38-patch-1/ob_1740455732.jpg", id: "OB_1740455732", caption: "MOURNING RITUALS: ARMY FAMILY" }
         ];
 
         let currentSlide = 0;
@@ -282,11 +313,15 @@
                 slideDiv.setAttribute('data-id', file.id);
                 slideDiv.setAttribute('data-index', index);
 
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'confidential-frame w-full h-full flex justify-center items-center';
+
                 const img = document.createElement('img');
                 img.src = file.url;
                 img.alt = file.caption;
                 
-                slideDiv.appendChild(img);
+                imgContainer.appendChild(img);
+                slideDiv.appendChild(imgContainer);
                 filmStrip.appendChild(slideDiv);
             });
             // Initialize the first slide to be active
